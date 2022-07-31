@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'arrr.dart';
+import 'beth.dart';
 
-void main() => runApp(const Arrr());
+void main() => runApp(const Beth());

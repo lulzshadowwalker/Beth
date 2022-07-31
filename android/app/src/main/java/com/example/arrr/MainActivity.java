@@ -1,4 +1,4 @@
-package com.example.arrr;
+package com.example.beth;
 
 import io.flutter.embedding.android.FlutterActivity;
 

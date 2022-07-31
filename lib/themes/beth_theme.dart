@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-/// TODO: customize the app theme.
 
 class LulzTheme {
   static final String? _fontFamily = GoogleFonts.firaCode().fontFamily;
