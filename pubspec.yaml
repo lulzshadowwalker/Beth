@@ -1,37 +1,47 @@
 name: beth
-description: 
-
+description: null
 
 version: 1.0.0+1
-
 
 environment:
   sdk: ">=2.16.2 <3.0.0"
 
-
 dependencies:
+  cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.2
-  google_fonts: ^2.3.2
+  google_fonts: ^3.0.1
+  motion_toast: ^2.3.2
+  logger: ^1.1.0
 
-  # GetX
-  get: ^4.6.1
-  flutter_screenutil: ^5.5.3+2
+  # icons
+  font_awesome_flutter: ^10.1.0
 
+  # GetX 
+  get: ^4.6.5
+
+  # firebase
+  cloud_firestore: ^3.4.4
+  firebase_auth: ^3.6.3
+  firebase_core: ^1.20.1
+  google_sign_in: ^5.4.0
+  firebase_storage: ^10.3.6
+  
+  loading_animation_widget: ^1.2.0+2
+  animated_text_kit: ^4.2.2
+  image_picker: ^0.8.5+3
+  flutter_svg: ^1.1.4
+  uuid: ^3.0.6
 
 dev_dependencies:
+
+  flutter_lints: ^2.0.1
   flutter_test:
     sdk: flutter
-
-  flutter_lints: ^1.0.0
-
 
 flutter:
   uses-material-design: true
 
   assets:
     - assets/images/
-
-  

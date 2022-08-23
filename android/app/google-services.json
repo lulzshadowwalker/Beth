@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "874440609164",
+    "project_id": "beth-a52fe",
+    "storage_bucket": "beth-a52fe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:874440609164:android:85bfad008e6464da075aa9",
+        "android_client_info": {
+          "package_name": "com.betharbel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "874440609164-tvpjfiot3iegc0v1cnrl1urj2d5r2q96.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCb2t9UBtVaizvqkI7o21RBwykKVZJqPU8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "874440609164-tvpjfiot3iegc0v1cnrl1urj2d5r2q96.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,4 @@
-package com.example.beth;
+package com.betharbel;
 
 import io.flutter.embedding.android.FlutterActivity;
 
