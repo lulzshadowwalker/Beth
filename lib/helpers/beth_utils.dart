@@ -41,19 +41,15 @@ class BethUtils {
     };
 
     const Duration toastDuration = Duration(seconds: 3);
-    final textStyle = Get.textTheme.subtitle1;
+    final textStyle = Get.textTheme.titleMedium;
     switch (alertType) {
       case AlertType.error:
         MotionToast.error(
-          title: Text(
-            title[alertType]!,
-            style: textStyle,
-          ),
+          title: Text(title[alertType]!,
+              style: textStyle?.copyWith(fontWeight: FontWeight.bold)),
           description: Text(
             message,
-            style: textStyle?.copyWith(
-              color: BethColors.grey,
-            ),
+            style: textStyle,
           ),
           enableAnimation: enableAnimation,
           toastDuration: toastDuration,
@@ -61,10 +57,11 @@ class BethUtils {
         break;
       case AlertType.success:
         MotionToast.success(
-          title: Text(title[alertType]!, style: textStyle),
+          title: Text(title[alertType]!,
+              style: textStyle?.copyWith(fontWeight: FontWeight.bold)),
           description: Text(
             message,
-            style: textStyle?.copyWith(color: BethColors.grey),
+            style: textStyle,
           ),
           enableAnimation: enableAnimation,
           toastDuration: toastDuration,
@@ -72,10 +69,11 @@ class BethUtils {
         break;
       case AlertType.warning:
         MotionToast.warning(
-          title: Text(title[alertType]!, style: textStyle),
+          title: Text(title[alertType]!,
+              style: textStyle?.copyWith(fontWeight: FontWeight.bold)),
           description: Text(
             message,
-            style: textStyle?.copyWith(color: BethColors.grey),
+            style: textStyle,
           ),
           enableAnimation: enableAnimation,
           toastDuration: toastDuration,
@@ -83,10 +81,11 @@ class BethUtils {
         break;
       case AlertType.info:
         MotionToast.info(
-          title: Text(title[alertType]!, style: textStyle),
+          title: Text(title[alertType]!,
+              style: textStyle?.copyWith(fontWeight: FontWeight.bold)),
           description: Text(
             message,
-            style: textStyle?.copyWith(color: BethColors.grey),
+            style: textStyle,
           ),
           enableAnimation: enableAnimation,
           toastDuration: toastDuration,
@@ -94,10 +93,11 @@ class BethUtils {
         break;
       case AlertType.delete:
         MotionToast.delete(
-          title: Text(title[alertType]!, style: textStyle),
+          title: Text(title[alertType]!,
+              style: textStyle?.copyWith(fontWeight: FontWeight.bold)),
           description: Text(
             message,
-            style: textStyle?.copyWith(color: BethColors.grey),
+            style: textStyle,
           ),
           enableAnimation: enableAnimation,
           toastDuration: toastDuration,

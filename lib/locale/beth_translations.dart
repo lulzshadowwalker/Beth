@@ -29,6 +29,7 @@ class BethTranslations extends Translations {
   static const String gallery = 'gallery';
   static const String camera = 'camera';
   static const String pickImage = 'uploadImage';
+  static const String step2of2 = 'step2of2';
   /* -------------------------------------------------------------------------- */
 
   /* [FirebaseAuthException] codes -------------------------------------------- */
@@ -84,6 +85,7 @@ class BethTranslations extends Translations {
           gallery: 'gallery',
           camera: 'camera',
           pickImage: 'Pick an image',
+          step2of2: 'Step 2 of 2',
         },
         /* -------------------------------------------------------------------------- */
 
@@ -122,6 +124,7 @@ class BethTranslations extends Translations {
           gallery: 'الألبوم',
           camera: 'الكاميرا',
           pickImage: 'اختيار صورة',
+          step2of2: 'خطوة ٢ من ٢',
         },
         /* -------------------------------------------------------------------------- */
       };

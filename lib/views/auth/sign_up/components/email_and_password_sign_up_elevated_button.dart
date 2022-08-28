@@ -9,10 +9,10 @@ class _EmailAndPasswordSignUpElevatedButton extends StatelessWidget {
       onTap: () async {
         if (Get.find<FormController>(tag: BethConst.signUpForm).validate()) {
           // without resetting [CredentialController]
-          Get.to(SignUpAddPfp());
+          Get.to(const SignUpAddPfp());
         }
       },
-      text: BethTranslations.signUp.tr,
+      text: BethTranslations.step2of2 .tr,
     );
   }
 }

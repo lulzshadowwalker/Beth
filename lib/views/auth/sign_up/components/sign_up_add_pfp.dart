@@ -1,9 +1,7 @@
 part of './sign_up_components.dart';
 
 class SignUpAddPfp extends StatelessWidget {
-  SignUpAddPfp({Key? key}) : super(key: key);
-
-  final _credentials = Get.find<CredentialsController>();
+  const SignUpAddPfp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,24 +17,7 @@ class SignUpAddPfp extends StatelessWidget {
               children: [
                 Stack(
                   children: [
-                    GetBuilder(
-                      init: ImageController(),
-                      builder: (ImageController _) => Container(
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: BethColors.primary2,
-                          ),
-                          width: 128,
-                          height: 128,
-                          child: _.getImage == null
-                              ? SvgPicture.asset(
-                                  BethImages.doodleAvatar[2],
-                                  alignment: Alignment.topCenter,
-                                  // width: 64,
-                                )
-                              : Image.memory(_.getImage!, fit: BoxFit.cover)),
-                    ),
+                    const _Avatar(),
                     Positioned(
                       bottom: -10,
                       right: -12,
@@ -47,25 +28,12 @@ class SignUpAddPfp extends StatelessWidget {
                     )
                   ],
                 ),
-                Text(
-                  _credentials.userData.name!,
-                  style: Get.textTheme.headline4?.copyWith(
-                    shadows: [
-                      const Shadow(
-                        blurRadius: 7.0,
-                        color: BethColors.white,
-                      ),
-                    ],
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 25),
+                _Name(),
+                const SizedBox(height: 55),
                 BethElevatedButton(
-                    onTap: () async {
-                      await Get.find<AuthController>()
-                          .signUpWithEmailAndPassword();
-                    },
-                    text: 'Create an account')
+                  onTap: _onTap,
+                  text: BethTranslations.signUp.tr,
+                ),
               ],
             ),
           ),
@@ -74,10 +42,72 @@ class SignUpAddPfp extends StatelessWidget {
     );
   }
 
+  void _onTap() async {
+    await Get.find<AuthController>().signUpWithEmailAndPassword();
+  }
+
   void _selectImage() async {
     final selectedImage = await BethUtils.selectImage();
+    final credentials = Get.find<CredentialsController>();
 
-    _credentials.userData.profilePicture = selectedImage;
+    credentials.userData.profilePicture = selectedImage;
     Get.find<ImageController>().setImage = selectedImage;
+  }
+}
+
+class _Avatar extends StatelessWidget {
+  const _Avatar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder(
+      init: ImageController(),
+      builder: (ImageController _) {
+        return Container(
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: BethColors.primary2,
+            ),
+            width: 128,
+            height: 128,
+            child: _.getImage == null
+                ? GetX(
+                    init: CounterController(
+                        maxValue:
+                            BethImages.doodleAvatar.length - 1),
+                    builder: (CounterController _) =>
+                        SvgPicture.asset(
+                      BethImages.doodleAvatar[_.count],
+                      alignment: Alignment.topCenter,
+                      // width: 64,
+                    ),
+                  )
+                : Image.memory(_.getImage!, fit: BoxFit.cover));
+      },
+    );
+  }
+}
+
+class _Name extends StatelessWidget {
+  _Name({Key? key}) : super(key: key);
+  final _credentials = Get.find<CredentialsController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      _credentials.userData.name!,
+      style: Get.textTheme.headlineMedium?.copyWith(
+        shadows: [
+          const Shadow(
+            blurRadius: 7.0,
+            color: BethColors.white,
+          ),
+        ],
+      ),
+      textAlign: TextAlign.center,
+    );
   }
 }

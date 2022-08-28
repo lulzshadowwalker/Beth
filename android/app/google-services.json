@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "874440609164-aui6pd84e3u6pgus9vpqr7587d91d8d1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.betharbel",
+            "certificate_hash": "df999019a0ed7f411dcfed2845b69346dfadebd9"
+          }
+        },
+        {
           "client_id": "874440609164-tvpjfiot3iegc0v1cnrl1urj2d5r2q96.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "874440609164-tvpjfiot3iegc0v1cnrl1urj2d5r2q96.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "874440609164-9t85t1bhfa76hbbpgaeha82ve1lvalbo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.beth"
+              }
             }
           ]
         }

@@ -43,7 +43,7 @@ class SignUp extends StatelessWidget {
 
                 BethDivider(
                     child: Text(BethTranslations.or.tr,
-                        style: Get.textTheme.caption)),
+                        style: Get.textTheme.bodySmall)),
 
                 const GoogleAuthElevatedButton(isSignIn: false),
 

@@ -1,4 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:beth/controllers/counter/counter_controller.dart';
 import 'package:beth/controllers/credentials/credentials_controller.dart';
 import 'package:beth/controllers/form/form_controller.dart';
 import 'package:beth/helpers/beth_const.dart';
