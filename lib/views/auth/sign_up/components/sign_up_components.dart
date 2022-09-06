@@ -7,6 +7,7 @@ import 'package:beth/helpers/beth_images.dart';
 import 'package:beth/helpers/beth_utils.dart';
 import 'package:beth/models/beth_user_credentials.dart';
 import 'package:beth/views/auth/sign_in/components/sign_in_components.dart';
+import 'package:beth/views/home/home.dart';
 import 'package:beth/views/shared/beth_animated_header.dart';
 import 'package:beth/views/shared/google_auth_elevated_button.dart';
 import 'package:flutter/material.dart';

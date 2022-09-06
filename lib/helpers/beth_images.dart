@@ -9,4 +9,8 @@ class BethImages {
     'assets/images/doodle-avatar-7.svg',
     'assets/images/doodle-avatar-8.svg',
   ];
+
+  
+  static const String unknownProfilePicture =
+      'https://www.freepik.com/free-icon/user_15613379.htm';
 }

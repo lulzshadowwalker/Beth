@@ -44,6 +44,8 @@ class SignUpAddPfp extends StatelessWidget {
 
   void _onTap() async {
     await Get.find<AuthController>().signUpWithEmailAndPassword();
+
+    Get.find<CredentialsController>().getOffAll(const Home());
   }
 
   void _selectImage() async {
@@ -76,10 +78,8 @@ class _Avatar extends StatelessWidget {
             child: _.getImage == null
                 ? GetX(
                     init: CounterController(
-                        maxValue:
-                            BethImages.doodleAvatar.length - 1),
-                    builder: (CounterController _) =>
-                        SvgPicture.asset(
+                        maxValue: BethImages.doodleAvatar.length - 1),
+                    builder: (CounterController _) => SvgPicture.asset(
                       BethImages.doodleAvatar[_.count],
                       alignment: Alignment.topCenter,
                       // width: 64,

@@ -1,12 +1,12 @@
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BethUser {
-  final String? name;
-  final String? profilePicture;
-  final String? email;
-  final String? userId;
-  final DateTime? dateCreated;
-  final List? comments;
+  String? name;
+  String? profilePicture;
+  String? email;
+  String? userId;
+  DateTime? dateCreated;
+  List? comments;
 
   BethUser({
     this.name,
@@ -16,4 +16,15 @@ class BethUser {
     this.dateCreated,
     this.comments,
   });
+
+  BethUser.empty();
+
+  BethUser.fromDocumentSnapshot(DocumentSnapshot snapshot) {
+    name = snapshot['name'];
+    profilePicture = snapshot['profilePicture'];
+    email = snapshot['email'];
+    userId = snapshot['userId'];
+    dateCreated = snapshot['dateCreated'];
+    comments = snapshot['comments'];
+  }
 }

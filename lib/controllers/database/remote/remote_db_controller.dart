@@ -6,6 +6,9 @@ import 'package:beth/helpers/beth_utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
+import '../../../models/beth_user.dart';
+import '../../auth/auth_controller.dart';
+
 class RemoteDbController {
   final _firestore = FirebaseFirestore.instance;
   final _log = BethUtils.getLogger(_className);
@@ -45,5 +48,15 @@ class RemoteDbController {
     } catch (e) {
       BethUtils.handleUnkownError(e, _log);
     }
+  }
+
+  Stream<BethUser> getCurrentUserData() {
+    String? userId = Get.find<AuthController>().getUserId;
+
+    return _firestore
+        .collection(_users)
+        .doc(userId)
+        .snapshots()
+        .map(BethUser.fromDocumentSnapshot);
   }
 }

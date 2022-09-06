@@ -24,18 +24,17 @@ class BethColors {
   /// same as the current theme. lightmode -> white, lightmode -> black
   Color neutral2 = _checkBrightness ? Colors.black : Colors.white;
 
-
-
   static final Color lightPrimary1 = colorFromHex('F1EDEE');
   static final Color darkPrimary1 = colorFromHex('1C1B22');
   static final Color secondary1 = colorFromHex('00999F');
-  static final Color accent1 = colorFromHex('6290C3');
+  static final Color accent1 = colorFromHex('FBCE45');
   static final Color accent2 = colorFromHex('48D46B');
   static final Color red = colorFromHex('DB5461');
   static final Color green = colorFromHex('96F550');
   static const Color grey = Colors.grey;
   static const Color white = Colors.white;
   static const Color black = Colors.black;
+
   static final LinearGradient gradient1 = LinearGradient(
     colors: [Colors.black, secondary1],
     begin: Alignment.bottomCenter,

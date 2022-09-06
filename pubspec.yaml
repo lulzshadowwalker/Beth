@@ -34,6 +34,10 @@ dependencies:
   flutter_svg: ^1.1.4
   uuid: ^3.0.6
 
+  # side drawer 
+  shrink_sidemenu: ^2.0.0+2-null-safety
+  liquid_ui: ^1.0.0+9
+
 dev_dependencies:
 
   flutter_lints: ^2.0.1

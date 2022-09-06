@@ -1,6 +1,5 @@
 import 'package:beth/locale/beth_translations.dart';
 import 'package:beth/views/auth/sign_in/components/sign_in_components.dart';
-import 'package:beth/views/auth/sign_up/components/sign_up_components.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

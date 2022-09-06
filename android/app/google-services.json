@@ -1,49 +1,34 @@
 {
   "project_info": {
-    "project_number": "874440609164",
-    "project_id": "beth-a52fe",
-    "storage_bucket": "beth-a52fe.appspot.com"
+    "project_number": "184369622630",
+    "project_id": "beth-f1dd3",
+    "storage_bucket": "beth-f1dd3.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:874440609164:android:85bfad008e6464da075aa9",
+        "mobilesdk_app_id": "1:184369622630:android:bd62d5cf9c2fab6d47c7a7",
         "android_client_info": {
           "package_name": "com.betharbel"
         }
       },
       "oauth_client": [
         {
-          "client_id": "874440609164-aui6pd84e3u6pgus9vpqr7587d91d8d1.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.betharbel",
-            "certificate_hash": "df999019a0ed7f411dcfed2845b69346dfadebd9"
-          }
-        },
-        {
-          "client_id": "874440609164-tvpjfiot3iegc0v1cnrl1urj2d5r2q96.apps.googleusercontent.com",
+          "client_id": "184369622630-3v1354nfqapasofdoo4i59bab551q6oc.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCb2t9UBtVaizvqkI7o21RBwykKVZJqPU8"
+          "current_key": "AIzaSyCsTGzecHnryYGLWgnjSC_qtd01_SNZRXA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "874440609164-tvpjfiot3iegc0v1cnrl1urj2d5r2q96.apps.googleusercontent.com",
+              "client_id": "184369622630-3v1354nfqapasofdoo4i59bab551q6oc.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "874440609164-9t85t1bhfa76hbbpgaeha82ve1lvalbo.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.beth"
-              }
             }
           ]
         }
