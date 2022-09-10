@@ -7,11 +7,11 @@ import 'package:beth/views/home/home.dart';
 import 'package:beth/views/profile/profile.dart';
 import 'package:beth/views/settings/settings.dart';
 import 'package:beth/views/shared/beth_tile.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
-
 import '../../views/drawer/components/beth_drawer_components.dart';
 import '../auth/auth_controller.dart';
 
@@ -50,12 +50,16 @@ class BethDrawerController extends GetxController {
       builder: (CurrentUserController _) => BethTile(
           leading: CircleAvatar(
             radius: 24,
-            backgroundImage: NetworkImage(_.currentUserData.profilePicture ??
-                BethImages.unknownProfilePicture),
+            backgroundImage: CachedNetworkImageProvider(
+                _.currentUserData.profilePicture ??
+                    BethImages.unknownProfilePicture),
+            backgroundColor: BethColors.white,
           ),
           title: _.currentUserData.name ?? '..',
-          style:
-              Get.textTheme.headline5?.copyWith(fontWeight: FontWeight.bold)),
+          style: Get.textTheme.headline5?.copyWith(
+            fontWeight: FontWeight.bold,
+            overflow: TextOverflow.ellipsis,
+          )),
     ),
     BethDrawerTile(
       iconData: FontAwesomeIcons.user,
@@ -102,6 +106,7 @@ class BethDrawerController extends GetxController {
     BethDrawerTile(
       iconData: FontAwesomeIcons.gear,
       title: 'settings',
+      color: _activeTag == Settings.tag ? BethColors.accent1 : null,
       onTap: () {
         _activeTag = Settings.tag;
         Get.to(() => const Settings());

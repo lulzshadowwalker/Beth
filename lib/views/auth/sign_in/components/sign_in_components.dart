@@ -15,6 +15,7 @@ import 'package:get/get.dart';
 import '../../../../controllers/auth/auth_controller.dart';
 import '../../../../helpers/beth_const.dart';
 import '../../../../locale/beth_translations.dart';
+import '../../../shared/apple_auth_elevated_button.dart';
 import '../../../shared/beth_divider.dart';
 import '../../../shared/beth_email_field.dart';
 import '../../../shared/beth_password_field.dart';

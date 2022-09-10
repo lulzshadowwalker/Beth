@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:beth/controllers/credentials/credentials_controller.dart';
 import 'package:beth/helpers/beth_images.dart';
 import 'package:beth/helpers/beth_utils.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -33,6 +34,11 @@ class RemoteStorageController {
       TaskSnapshot snapshot = await reference.putData(file);
 
       final String downloadUrl = await snapshot.ref.getDownloadURL();
+
+      Get.find<CredentialsController>().userData.profilePictureLink =
+          downloadUrl;
+
+      _log.v('file uploaded successfully');
     } on SocketException {
       BethUtils.handleSocketException(_log);
     } catch (e) {

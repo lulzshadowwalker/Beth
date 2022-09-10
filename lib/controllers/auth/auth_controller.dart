@@ -15,7 +15,7 @@ class AuthController {
   /// Authentication Controller
   final Logger _log = BethUtils.getLogger(_className);
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  static final FirebaseAuth _auth = FirebaseAuth.instance;
   final _remoteDb = RemoteDbController();
   final _credentials = Get.find<CredentialsController>();
 
@@ -62,7 +62,7 @@ class AuthController {
 
       final String? uid = userCredential.user?.uid;
       _credentials.userData.userId = uid;
-      _remoteDb.registerUser();
+      await _remoteDb.registerUser();
 
       _log.v('Signed-up with email and password');
     } on SocketException {
@@ -133,7 +133,8 @@ class AuthController {
       _credentials.userData = BethUserCredential.fromOAuth(
         userCredential.additionalUserInfo!.profile!,
       );
-      _remoteDb.registerUser();
+
+      await _remoteDb.registerUser();
     } on FirebaseAuthException catch (e) {
       _handleFirebaseAuthException(e);
     } on SocketException {
@@ -144,7 +145,8 @@ class AuthController {
   }
 
   Future<void> appleAuth() async {
-    // TODO Apple auth
+    // TODO implement [appleAuth]. Needs an Apple developer account.
+    throw UnimplementedError('Apple auth has not been implemnted');
   }
   /* -------------------------------------------------------------------------- */
 

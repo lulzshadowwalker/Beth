@@ -37,6 +37,7 @@ dependencies:
   # side drawer 
   shrink_sidemenu: ^2.0.0+2-null-safety
   liquid_ui: ^1.0.0+9
+  cached_network_image: ^3.2.2
 
 dev_dependencies:
 

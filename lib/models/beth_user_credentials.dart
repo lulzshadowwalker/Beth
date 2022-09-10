@@ -21,6 +21,6 @@ class BethUserCredential {
       : email = profile[BethConst.gEmail],
         password = '',
         name = profile[BethConst.gName],
-        profilePicture = profile[BethConst.gProfilePicture],
+        profilePictureLink = profile[BethConst.gProfilePicture],
         userId = profile[BethConst.gUserId];
 }

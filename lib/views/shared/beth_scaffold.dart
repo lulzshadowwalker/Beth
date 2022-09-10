@@ -3,6 +3,7 @@ import 'package:beth/themes/beth_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
+import 'package:uuid/uuid.dart';
 
 import '../drawer/components/beth_drawer_components.dart';
 
@@ -19,9 +20,10 @@ class BethScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder(
       init: BethDrawerController(),
+      tag: const Uuid().v4(),
       builder: (BethDrawerController _) => SideMenu(
         key: _.key,
-        menu: BethDrawer(),
+        menu: const BethDrawer(),
         type: SideMenuType.slideNRotate,
         closeIcon: null,
         background: Get.theme.brightness == Brightness.dark

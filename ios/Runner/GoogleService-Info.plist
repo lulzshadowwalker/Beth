@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>874440609164-9t85t1bhfa76hbbpgaeha82ve1lvalbo.apps.googleusercontent.com</string>
+	<string>1038619686812-assbe0hd4c11kg76ab08hv1buvoukdvk.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.874440609164-9t85t1bhfa76hbbpgaeha82ve1lvalbo</string>
+	<string>com.googleusercontent.apps.1038619686812-assbe0hd4c11kg76ab08hv1buvoukdvk</string>
 	<key>API_KEY</key>
-	<string>AIzaSyASthqiM9MOl_EnoKs21OFtEiSppU32n28</string>
+	<string>AIzaSyDzc1VcZnKxwuPSQCFlyoGQnE6Ce7GJvfE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>874440609164</string>
+	<string>1038619686812</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.beth</string>
+	<string>com.betharbel</string>
 	<key>PROJECT_ID</key>
-	<string>beth-a52fe</string>
+	<string>beth5-f693d</string>
 	<key>STORAGE_BUCKET</key>
-	<string>beth-a52fe.appspot.com</string>
+	<string>beth5-f693d.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:874440609164:ios:f53e10b359efab7f075aa9</string>
+	<string>1:1038619686812:ios:f240ff251453e3aa077a59</string>
 </dict>
 </plist>

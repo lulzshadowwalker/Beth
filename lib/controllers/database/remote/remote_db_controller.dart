@@ -19,7 +19,7 @@ class RemoteDbController {
   static const String _className = 'RemoteDbController';
   static const String _users = 'users';
   static const String _name = 'name';
-  static const String _email = '_email';
+  static const String _email = 'email';
   static const String _dateCreated = 'dateCreated';
   static const String _profilePicture = 'profilePicture';
   static const String _userId = 'userId';
@@ -29,20 +29,25 @@ class RemoteDbController {
     try {
       final profilePicture = _credentials.userData.profilePicture;
       if (profilePicture != null) {
-        _remoteStorage.upload(file: profilePicture, childName: _profilePicture);
+        await _remoteStorage.upload(
+          file: profilePicture,
+          childName: _profilePicture,
+        );
       }
 
-      _firestore.collection(_users).add({
+      String? uid = Get.find<AuthController>().getUserId;
+
+      _firestore.collection(_users).doc(uid).set({
         _name: _credentials.userData.name,
         _email: _credentials.userData.email,
         _dateCreated: DateTime.now().toUtc(),
-        _profilePicture: _credentials.userData.profilePicture,
+        _profilePicture: _credentials.userData.profilePictureLink,
         _userId: _credentials.userData.userId,
       });
 
-      _credentials.reset();
-
       _log.v('user data added to firestore successfully');
+
+      _credentials.reset();
     } on SocketException {
       BethUtils.handleSocketException(_log);
     } catch (e) {
@@ -51,11 +56,11 @@ class RemoteDbController {
   }
 
   Stream<BethUser> getCurrentUserData() {
-    String? userId = Get.find<AuthController>().getUserId;
+    final uid = Get.find<AuthController>().getUserId;
 
     return _firestore
         .collection(_users)
-        .doc(userId)
+        .doc(uid)
         .snapshots()
         .map(BethUser.fromDocumentSnapshot);
   }

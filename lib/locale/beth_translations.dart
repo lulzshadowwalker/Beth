@@ -15,6 +15,7 @@ class BethTranslations extends Translations {
   static const String passwordHintText = 'passwordHintText';
   static const String forgotPassword = 'forgotPassword';
   static const String or = 'or';
+  static const String signInWithApple = 'signInWithApple';
   static const String signInWithGoogle = 'signInWithGoogle';
   static const String signUpWithGoogle = 'signUpWithGoogle';
   static const String dontHaveAnAccount = 'dontHaveAnAccount';
@@ -30,6 +31,7 @@ class BethTranslations extends Translations {
   static const String camera = 'camera';
   static const String pickImage = 'uploadImage';
   static const String step2of2 = 'step2of2';
+  static const String signUpWithApple = 'signUpWithApple';
   /* -------------------------------------------------------------------------- */
 
   /* [FirebaseAuthException] codes -------------------------------------------- */
@@ -69,12 +71,14 @@ class BethTranslations extends Translations {
           passwordHintText: 'letters, numbers, and symbols',
           forgotPassword: 'forgot password?',
           or: 'or',
-          signInWithGoogle: 'Sign in with Google',
+          signInWithApple: 'Sign in with Apple',
+          signUpWithApple: 'Sign up with Apple',
           dontHaveAnAccount: 'dont have an account?',
           signUp: 'Sign up',
           passwordInvalid: 'letters, numbers, and symbols (8 chars min)',
           emailInvalid: 'email format is invalid',
           passwordResetEmail: 'Passwrod-reset email has been sent',
+          signInWithGoogle: 'Sign in with Google',
           signUpWithGoogle: 'Sign up with Google',
           alreadyHaveAnAccount: 'already have an account?',
           name: 'name',
@@ -108,13 +112,15 @@ class BethTranslations extends Translations {
           passwordHintText: 'أحرف أرقام ورموز',
           forgotPassword: 'نسيت كلمة المرور؟',
           or: 'أو',
-          signInWithGoogle: 'تسجيل الدخول مع جوجل',
+          signInWithApple: 'تسجيل الدخول مع آبل',
+          signUpWithApple: 'تسجيل مستخدم جديد مع آبل',
           dontHaveAnAccount: 'ليس لديك حساب؟',
           signUp: 'إنشاء حساب',
           passwordInvalid: '(8 خانات على الأقل) أحرف أرقام ورموز',
           emailInvalid: 'صيغة البريد الإلكتروني غير صحيحة',
           passwordResetEmail: 'تم إرسال بريد إلكتروني لتغيير كلمة المرور',
-          signUpWithGoogle: 'تسجيل مستخدم جديد مع جوجل',
+          signInWithGoogle: 'تسجيل الدخول مع غووغل',
+          signUpWithGoogle: 'تسجيل مستخدم جديد مع غووغل',
           alreadyHaveAnAccount: 'لديك حساب مسبقًا؟',
           name: 'الاسم',
           nameInvalid: 'يجب أن يكون الاسم 3-12 خانة',

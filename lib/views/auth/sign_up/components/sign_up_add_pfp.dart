@@ -8,33 +8,43 @@ class SignUpAddPfp extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       extendBody: true,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40),
-        child: Center(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Stack(
+      body: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(
+            minWidth: 150,
+            minHeight: 150,
+            maxHeight: double.infinity,
+            maxWidth: 550,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            child: Center(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const _Avatar(),
-                    Positioned(
-                      bottom: -10,
-                      right: -12,
-                      child: IconButton(
-                        onPressed: _selectImage,
-                        icon: const FaIcon(FontAwesomeIcons.circlePlus),
-                      ),
-                    )
+                    Stack(
+                      children: [
+                        const _Avatar(),
+                        Positioned(
+                          bottom: -10,
+                          right: -12,
+                          child: IconButton(
+                            onPressed: _selectImage,
+                            icon: const FaIcon(FontAwesomeIcons.circlePlus),
+                          ),
+                        )
+                      ],
+                    ),
+                    _Name(),
+                    const SizedBox(height: 55),
+                    BethElevatedButton(
+                      onTap: _onTap,
+                      text: BethTranslations.signUp.tr,
+                    ),
                   ],
                 ),
-                _Name(),
-                const SizedBox(height: 55),
-                BethElevatedButton(
-                  onTap: _onTap,
-                  text: BethTranslations.signUp.tr,
-                ),
-              ],
+              ),
             ),
           ),
         ),

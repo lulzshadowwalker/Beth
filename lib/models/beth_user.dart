@@ -19,12 +19,13 @@ class BethUser {
 
   BethUser.empty();
 
-  BethUser.fromDocumentSnapshot(DocumentSnapshot snapshot) {
-    name = snapshot['name'];
-    profilePicture = snapshot['profilePicture'];
-    email = snapshot['email'];
-    userId = snapshot['userId'];
-    dateCreated = snapshot['dateCreated'];
-    comments = snapshot['comments'];
+  BethUser.fromDocumentSnapshot(
+      DocumentSnapshot<Map<String, dynamic>> snapshot) {
+    name = snapshot.data()?['name'];
+    profilePicture = snapshot.data()?['profilePicture'];
+    email = snapshot.data()?['email'];
+    userId = snapshot.data()?['userId'];
+    dateCreated = snapshot.data()?['dateCreated'].toDate();
+    comments = snapshot.data()?['comments'];
   }
 }

@@ -145,7 +145,11 @@ class BethUtils {
         constraints: const BoxConstraints(maxWidth: 500),
       );
 
-      XFile? image = await ImagePicker().pickImage(source: imageSource);
+      XFile? image = await ImagePicker().pickImage(
+        source: imageSource,
+        maxHeight: 400,
+        maxWidth: 400,
+      );
 
       if (image == null) {
         throw Exception('Image picking proccess terminated by the user');
