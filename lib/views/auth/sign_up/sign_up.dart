@@ -30,10 +30,14 @@ class SignUp extends StatelessWidget {
                 Form(
                   key: _formController.formKey,
                   child: Column(
-                    children: const [
-                      _NameField(),
-                      BethEmailField(),
-                      BethPasswordField(),
+                    children: [
+                      BethNameField(
+                        onSaved: (value) => Get.find<CredentialsController>()
+                            .userData
+                            .name = value!,
+                      ),
+                      BethEmailField(onSaved: _onSaved),
+                      const BethPasswordField(),
                     ],
                   ),
                 ),
@@ -43,7 +47,7 @@ class SignUp extends StatelessWidget {
 
                 BethDivider(
                     child: Text(BethTranslations.or.tr,
-                        style: Get.textTheme.bodySmall)),
+                        style: Theme.of(context).textTheme.bodySmall)),
 
                 const GoogleAuthElevatedButton(isSignIn: false),
 
@@ -65,5 +69,9 @@ class SignUp extends StatelessWidget {
 
   void _alreadyHaveAnAccount() {
     Get.find<CredentialsController>().getOff(SignIn());
+  }
+
+  void _onSaved(String? value) {
+    Get.find<CredentialsController>().userData.email = value!;
   }
 }

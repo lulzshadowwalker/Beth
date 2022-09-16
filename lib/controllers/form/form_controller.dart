@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 
-class FormController extends GetxController {
+class FormController {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   GlobalKey get formKey => _formKey;

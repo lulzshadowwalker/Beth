@@ -1,11 +1,8 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:beth/controllers/credentials/credentials_controller.dart';
-import 'package:beth/helpers/beth_images.dart';
 import 'package:beth/helpers/beth_utils.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
@@ -18,7 +15,7 @@ class RemoteStorageController {
   final _firebaseStorage = FirebaseStorage.instance;
   final _log = BethUtils.getLogger(_className);
 
-  Future<void> upload({
+  Future<String?> upload({
     required Uint8List file,
     required String childName,
   }) async {
@@ -35,14 +32,14 @@ class RemoteStorageController {
 
       final String downloadUrl = await snapshot.ref.getDownloadURL();
 
-      Get.find<CredentialsController>().userData.profilePictureLink =
-          downloadUrl;
-
       _log.v('file uploaded successfully');
+
+      return downloadUrl;
     } on SocketException {
       BethUtils.handleSocketException(_log);
     } catch (e) {
       BethUtils.handleUnkownError(e, _log);
     }
+    return null;
   }
 }

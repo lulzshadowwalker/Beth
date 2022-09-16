@@ -1,17 +1,16 @@
+import 'dart:math' as math;
 import 'dart:typed_data';
 
 import 'package:beth/helpers/beth_log_printer.dart';
-import 'package:beth/views/shared/beth_image_source_bottomsheet.dart';
+import 'package:beth/views/shared/beth_image_source/beth_image_source_bottomsheet.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
 import 'package:motion_toast/motion_toast.dart';
-import 'package:flutter/material.dart';
 
 import '../locale/beth_translations.dart';
 import '../models/alert_type.dart';
-import '../themes/beth_colors.dart';
-import 'dart:math' as math;
 
 class BethUtils {
   static final _log = getLogger(_className);

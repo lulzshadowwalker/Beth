@@ -12,4 +12,9 @@ class ImageController extends GetxController {
 
     update();
   }
+
+  void clear() {
+    _image = null;
+    update();
+  }
 }

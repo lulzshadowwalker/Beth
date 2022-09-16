@@ -1,6 +1,21 @@
-import 'package:get/get_navigation/src/root/internacionalization.dart';
+import 'package:beth/helpers/beth_const.dart';
+import 'package:get/get.dart';
 
 class BethTranslations extends Translations {
+  /// returns a map of all the currently supported locales and their corresponding names
+  static Map<String, String> get languages => {
+        englishLanguageKey: english,
+        arabicLanguageKey: arabic,
+      };
+
+  /// returns the language name of the current locale
+  static String? get currentLanguageName => Get.locale?.languageCode;
+
+  static const String english = 'English';
+  static const String englishLanguageKey = 'en';
+  static const String arabic = 'العربية';
+  static const String arabicLanguageKey = 'ar';
+
   /* KEYS --------------------------------------------------------------------- */
   static const String error = 'failure';
   static const String checkInternetConnection = 'checkInternetConnection';
@@ -32,6 +47,35 @@ class BethTranslations extends Translations {
   static const String pickImage = 'uploadImage';
   static const String step2of2 = 'step2of2';
   static const String signUpWithApple = 'signUpWithApple';
+  static const String home = 'home';
+  static const String discover = 'discover';
+  static const String communityWall = 'communityWall';
+  static const String settings = 'settings';
+  static const String bugReport = 'bugReport';
+  static const String logout = 'logout';
+  static const String profilePicture = 'profilePicture';
+  static const String language = 'language';
+  static const String theme = 'theme';
+  static const String accountSettings = 'accountSettings';
+  static const String appSettings = 'appSettings';
+  static const String developerNotice = 'developerNotice';
+  static const String attributions = 'attributions';
+  static const String dark = 'dark';
+  static const String light = 'light';
+  static const String nameUpdatedSuccessfully = 'nameUpdatedSuccessfully';
+  static const String emailUpdatedSuccessfully = 'emailUpdatedSuccessfully';
+  static const String enterYourNewEmailAddress = 'enterYourNewEmailAddress';
+  static const String enterYourNewName = 'enterYourNewName';
+  static const String applyChanges = 'applyChanges';
+  static const String noImageSelected = 'noImageSelected';
+  static const String submitABug = 'submitABug';
+  static const String subject = 'subject';
+  static const String descriptionOptional = 'descriptionOptional';
+  static const String description = 'description';
+  static const String subjectMustBeProvided = 'subjectMustBeProvided';
+  static const String submit = 'submit';
+  static const String attachScreenshot = 'attachScreenshot';
+  static const String tyForSubmitting = 'tyForSubmitting';
   /* -------------------------------------------------------------------------- */
 
   /* [FirebaseAuthException] codes -------------------------------------------- */
@@ -41,9 +85,10 @@ class BethTranslations extends Translations {
   static const String weakPassword = 'weak-password';
   static const String authUserNotFound = 'auth/user-not-found';
   static const String networkRequestFailed = 'network-request-failed';
+  static const String requiresRecenetLogin = 'requires-recent-login';
   /* -------------------------------------------------------------------------- */
 
-  /* SHARED ------------------------------------------------------------------- */
+  /* SHARED VALUES ------------------------------------------------------------ */
   //
   static const String enCheckInternet = 'Check internet connection';
   static const String arCheckInternet = 'تحقق من الاتصال بالانترنت';
@@ -90,6 +135,37 @@ class BethTranslations extends Translations {
           camera: 'camera',
           pickImage: 'Pick an image',
           step2of2: 'Step 2 of 2',
+          home: 'home',
+          discover: 'discover',
+          communityWall: 'community',
+          settings: 'settings',
+          bugReport: 'bug report',
+          logout: 'logout',
+          profilePicture: 'profile picture',
+          language: 'language',
+          theme: 'theme',
+          accountSettings: 'Account Settings',
+          appSettings: 'App Settings',
+          developerNotice: 'Developer Notice',
+          attributions: 'attributions',
+          dark: 'dark',
+          light: 'light',
+          nameUpdatedSuccessfully: 'name updated successfully',
+          emailUpdatedSuccessfully: 'email updated successfully',
+          enterYourNewEmailAddress: 'enter your new email address',
+          enterYourNewName: 'enter your new name',
+          applyChanges: 'apply changes',
+          requiresRecenetLogin: 'you need to log in again to proceed',
+          BethConst.systemDefault: 'system default',
+          noImageSelected: 'no image selected',
+          submitABug: 'Submit a bug',
+          subject: 'subject',
+          descriptionOptional: 'description ( optional )',
+          description: 'description',
+          subjectMustBeProvided: 'subject must be provided',
+          submit: 'submit',
+          attachScreenshot: 'attach a screenshot',
+          tyForSubmitting: 'Thank you for submitting',
         },
         /* -------------------------------------------------------------------------- */
 
@@ -131,6 +207,37 @@ class BethTranslations extends Translations {
           camera: 'الكاميرا',
           pickImage: 'اختيار صورة',
           step2of2: 'خطوة ٢ من ٢',
+          home: 'الصفحة الرئيسة',
+          discover: 'استكشف',
+          communityWall: 'المجتمع',
+          settings: 'الإعدادات',
+          bugReport: 'تبليغ خلل',
+          logout: 'تسجيل الخروج',
+          profilePicture: 'الصورة الشخصية',
+          language: 'اللغة',
+          theme: 'المظهر',
+          accountSettings: 'إعدادات الحساب',
+          appSettings: 'إعدادات التطبيق',
+          developerNotice: 'ملحوظة المطور',
+          attributions: 'الإسناد',
+          dark: 'داكن',
+          light: 'ساطع',
+          nameUpdatedSuccessfully: 'تم تغيير الاسم بنجاح',
+          emailUpdatedSuccessfully: 'تم تغيير البريد الإلكتروني بنجاح',
+          enterYourNewEmailAddress: 'أدخل بريدك الإلكتروني الجديد',
+          enterYourNewName: 'أدخل الاسم الجديد',
+          applyChanges: 'تأكيد التغيير',
+          requiresRecenetLogin: 'تلزم إعادة تسجيل الدخول للمتابعة',
+          BethConst.systemDefault: 'افتراضي النظام',
+          noImageSelected: 'لم يتم اختيار صورة',
+          submitABug: 'أرسل تقرير عن الخلل',
+          subject: 'العنوان',
+          descriptionOptional: 'الوصف ( اختياري )',
+          description: 'الوصف',
+          subjectMustBeProvided: 'يجب إضافة عنوان',
+          submit: 'إرسال',
+          attachScreenshot: 'إرفاق صورة للشاشة',
+          tyForSubmitting: 'شكرا على التبليغ',
         },
         /* -------------------------------------------------------------------------- */
       };

@@ -3,9 +3,12 @@ import 'dart:io';
 import 'package:beth/controllers/credentials/credentials_controller.dart';
 import 'package:beth/controllers/storage/remote_storage/remote_storage_controller.dart';
 import 'package:beth/helpers/beth_utils.dart';
+import 'package:beth/locale/beth_translations.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:uuid/uuid.dart';
 
+import '../../../models/alert_type.dart';
 import '../../../models/beth_user.dart';
 import '../../auth/auth_controller.dart';
 
@@ -17,32 +20,47 @@ class RemoteDbController {
 
   /* STRING CONSTANTS --------------------------------------------------------- */
   static const String _className = 'RemoteDbController';
-  static const String _users = 'users';
-  static const String _name = 'name';
-  static const String _email = 'email';
-  static const String _dateCreated = 'dateCreated';
-  static const String _profilePicture = 'profilePicture';
-  static const String _userId = 'userId';
+  static const String _kUsers = 'users';
+  static const String _kName = 'name';
+  static const String _kEmail = 'email';
+  static const String _kDateCreated = 'dateCreated';
+  static const String _kProfilePicture = 'profilePicture';
+  static const String _kUserId = 'userId';
+  static const String _kBugReports = 'bugReports';
+  static const String _kSubject = 'title';
+  static const String _kDescription = 'description';
+  static const String _kAttachment = 'attachment';
+  static const String _kReportId = 'reportId';
+  static const String _kReportedBy = 'reportedBy';
   /* -------------------------------------------------------------------------- */
+
+  static String? get _uid => Get.find<AuthController>().getUserId;
 
   Future<void> registerUser() async {
     try {
       final profilePicture = _credentials.userData.profilePicture;
       if (profilePicture != null) {
-        await _remoteStorage.upload(
+        final downloadUrl = await _remoteStorage.upload(
           file: profilePicture,
-          childName: _profilePicture,
+          childName: _kProfilePicture,
         );
+
+        /// not asserting or throwing any errors because profile picture isn't
+        ///  worth terminating the proecess for imo.
+        if (downloadUrl != null) {
+          Get.find<CredentialsController>().userData.profilePictureLink =
+              downloadUrl;
+        }
       }
 
       String? uid = Get.find<AuthController>().getUserId;
 
-      _firestore.collection(_users).doc(uid).set({
-        _name: _credentials.userData.name,
-        _email: _credentials.userData.email,
-        _dateCreated: DateTime.now().toUtc(),
-        _profilePicture: _credentials.userData.profilePictureLink,
-        _userId: _credentials.userData.userId,
+      await _firestore.collection(_kUsers).doc(uid).set({
+        _kName: _credentials.userData.name,
+        _kEmail: _credentials.userData.email,
+        _kDateCreated: DateTime.now().toUtc(),
+        _kProfilePicture: _credentials.userData.profilePictureLink,
+        _kUserId: _credentials.userData.userId,
       });
 
       _log.v('user data added to firestore successfully');
@@ -56,12 +74,91 @@ class RemoteDbController {
   }
 
   Stream<BethUser> getCurrentUserData() {
-    final uid = Get.find<AuthController>().getUserId;
-
     return _firestore
-        .collection(_users)
-        .doc(uid)
+        .collection(_kUsers)
+        .doc(_uid)
         .snapshots()
         .map(BethUser.fromDocumentSnapshot);
+  }
+
+  Future<void> updateUserDisplayName(String name) async {
+    try {
+      await _firestore.collection(_kUsers).doc(_uid).update({_kName: name});
+
+      _log.v('updated user\'s display name successfully');
+      BethUtils.showSnackBar(
+        message: BethTranslations.nameUpdatedSuccessfully.tr,
+        alertType: AlertType.success,
+      );
+    } on SocketException {
+      BethUtils.handleSocketException(_log);
+    } catch (e) {
+      BethUtils.handleUnkownError(e, _log);
+    }
+  }
+
+  /// updates the user email in the firestore records.
+  /// ..
+  /// to update the user email in firebase_auth, use [AuthController.updateUserEmail] instead
+  Future<void> updateUserEmail(String email) async {
+    try {
+      await _firestore.collection(_kUsers).doc(_uid).update({_kEmail: email});
+
+      _log.v('updated user\'s email in firestore successfully');
+    } on SocketException {
+      BethUtils.handleSocketException(_log);
+    } catch (e) {
+      BethUtils.handleUnkownError(e, _log);
+    }
+  }
+
+  Future<void> updateProfilePicture(String profilePictureLink) async {
+    try {
+      await _firestore
+          .collection(_kUsers)
+          .doc(_uid)
+          .update({_kProfilePicture: profilePictureLink});
+
+      _log.v('updated user\'s profile picture successfully');
+    } on SocketException {
+      BethUtils.handleSocketException(_log);
+    } catch (e) {
+      BethUtils.handleUnkownError(e, _log);
+    }
+  }
+
+  Future<void> bugReport({
+    required String subject,
+    String? description,
+    required String attachment,
+  }) async {
+    try {
+      final reportId = const Uuid().v4();
+
+      Map<String, String?> reportInfo = {
+        _kSubject: subject,
+        _kDescription: description,
+        _kAttachment: attachment,
+        _kReportId: reportId,
+        _kReportedBy: _uid,
+      };
+
+      await _firestore.collection(_kUsers).doc(_uid).update({
+        _kBugReports: FieldValue.arrayUnion([reportInfo])
+      });
+      _log.v('added report info to the user\'s record successfully');
+
+      await _firestore.collection(_kBugReports).doc(reportId).set(reportInfo);
+      _log.v('added report info to the reports\'s collection successfully');
+
+      BethUtils.showSnackBar(
+        message: BethTranslations.tyForSubmitting.tr,
+        alertType: AlertType.success,
+      );
+    } on SocketException {
+      BethUtils.handleSocketException(_log);
+    } catch (e) {
+      BethUtils.handleUnkownError(e, _log);
+    }
   }
 }

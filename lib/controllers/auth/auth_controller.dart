@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:logger/logger.dart';
 
-class AuthController {
+class AuthController extends GetxController {
   /// Authentication Controller
   final Logger _log = BethUtils.getLogger(_className);
 
@@ -24,6 +24,32 @@ class AuthController {
   /* -------------------------------------------------------------------------- */
 
   String? get getUserId => _auth.currentUser?.uid;
+  User? get _user => _auth.currentUser;
+
+  // final _firebaseUser = Rx<User?>(_auth.currentUser);
+
+  // @override
+  // void onInit() {
+  //   /// [onReady] happens one frame after allocating the object in the memory aka [onInit]
+  //   super.onInit();
+
+  //   /// Wrapper
+  //   _firebaseUser.bindStream(_auth.authStateChanges());
+
+  //   /// Show suitable screen depending on the auth status
+  //   ever(_firebaseUser, _setScreen);
+  // }
+
+  // /// auth/home screen depending on auth state
+  // /// function callback in the [ever] worker or event
+  // _setScreen(User? currentUser) {
+  //   currentUser == null
+  //       ? Get.offAll(() => SignIn())
+  //       : {
+  //           Get.put(() => CurrentUserController(), permanent: true),
+  //           Get.offAll(() => const BethHome())
+  //         };
+  // }
 
   /* GUEST -------------------------------------------------------------------- */
   Future<void> guestSignIn() async {
@@ -57,8 +83,9 @@ class AuthController {
   Future<void> signUpWithEmailAndPassword() async {
     try {
       final userCredential = await _auth.createUserWithEmailAndPassword(
-          email: _credentials.userData.email,
-          password: _credentials.userData.password);
+        email: _credentials.userData.email,
+        password: _credentials.userData.password,
+      );
 
       final String? uid = userCredential.user?.uid;
       _credentials.userData.userId = uid;
@@ -83,9 +110,27 @@ class AuthController {
     } catch (e) {
       BethUtils.handleUnkownError(e, _log);
     }
-
-    /* -------------------------------------------------------------------------- */
   }
+
+  Future<void> updateEmail(String email) async {
+    try {
+      await _user!.updateEmail(email);
+
+      await _remoteDb.updateUserEmail(email);
+      _log.v('updated user\'s email successfully');
+      BethUtils.showSnackBar(
+        message: BethTranslations.emailUpdatedSuccessfully.tr,
+        alertType: AlertType.success,
+      );
+    } on SocketException {
+      BethUtils.handleSocketException(_log);
+    } on FirebaseAuthException catch (e) {
+      _handleFirebaseAuthException(e);
+    } catch (e) {
+      BethUtils.handleUnkownError(e, _log);
+    }
+  }
+  /* -------------------------------------------------------------------------- */
 
   Future<void> sendPasswordResetEmail() async {
     try {
@@ -95,6 +140,7 @@ class AuthController {
       BethUtils.showSnackBar(
         message: BethTranslations.passwordResetEmail.tr,
         alertType: AlertType.success,
+
       );
     } on SocketException {
       BethUtils.handleSocketException(_log);
@@ -157,6 +203,7 @@ class AuthController {
     BethUtils.showSnackBar(
       message: e.code.tr,
       alertType: AlertType.error,
+
     );
   }
   /* -------------------------------------------------------------------------- */

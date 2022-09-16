@@ -23,9 +23,13 @@ class BethDrawerTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 18.0),
       child: BethTile(
-        leading: FaIcon(_iconData, size: 28, color: _color),
+        leading: FaIcon(_iconData,
+            size: 24, color: _color ?? BethColors.lightPrimary1),
         title: _title,
-        style: Get.textTheme.headline6?.copyWith(color: _color),
+        style: Theme.of(context)
+            .textTheme
+            .headline6
+            ?.copyWith(color: _color ?? BethColors.lightPrimary1),
         onTap: _onTap,
       ),
     );

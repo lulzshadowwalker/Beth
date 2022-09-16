@@ -14,4 +14,4 @@ class _ForgotPasswordTextButton extends StatelessWidget {
   }
 }
 
-void _onTap() => Get.find<CredentialsController>().getTo(PasswordReset());
+void _onTap() => Get.find<CredentialsController>().getTo(const PasswordReset());

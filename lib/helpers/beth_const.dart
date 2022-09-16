@@ -4,6 +4,15 @@ class BethConst {
   static const String signInForm = 'sign-in-form';
   /* -------------------------------------------------------------------------- */
 
+  /* GET STORAGE -------------------------------------------------------------- */
+  static const String themeMode = 'themeMode';
+  static const String languageCode = 'language';
+  /* -------------------------------------------------------------------------- */
+
+  static const String light = 'light';
+  static const String dark = 'dark';
+  static const String systemDefault = 'system default';
+
   /// google auth map key
   static const String gGivenName = 'given_name';
 
@@ -19,4 +28,6 @@ class BethConst {
   /// google auth map key
   static const String gEmail = 'email';
   static const String gUserId = 'email';
+
+  static const String nameFallBack = '\t\t..';
 }

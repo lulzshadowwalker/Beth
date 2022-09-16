@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 class CurrentUserController extends GetxController {
   final _user = BethUser.empty().obs;
 
-  BethUser get currentUserData => _user.value;
+  BethUser get data => _user.value;
 
   @override
   void onInit() {
