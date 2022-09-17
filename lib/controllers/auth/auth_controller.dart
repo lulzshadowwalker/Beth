@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:beth/controllers/credentials/credentials_controller.dart';
 import 'package:beth/controllers/database/remote/remote_db_controller.dart';
+import 'package:beth/controllers/eva_api/eva_api_controller.dart';
 import 'package:beth/helpers/beth_utils.dart';
 import 'package:beth/locale/beth_translations.dart';
 import 'package:beth/models/alert_type.dart';
@@ -82,6 +83,16 @@ class AuthController extends GetxController {
 
   Future<void> signUpWithEmailAndPassword() async {
     try {
+      final isAuthenticEmail =
+          await EvaApiController().verifyEmail(_credentials.userData.email);
+      if (!isAuthenticEmail) {
+        BethUtils.showSnackBar(
+          message: BethTranslations.unauthenticEmail.tr,
+          alertType: AlertType.error,
+        );
+        throw Exception('unauthentic email');
+      }
+
       final userCredential = await _auth.createUserWithEmailAndPassword(
         email: _credentials.userData.email,
         password: _credentials.userData.password,
@@ -140,7 +151,6 @@ class AuthController extends GetxController {
       BethUtils.showSnackBar(
         message: BethTranslations.passwordResetEmail.tr,
         alertType: AlertType.success,
-
       );
     } on SocketException {
       BethUtils.handleSocketException(_log);
@@ -203,7 +213,6 @@ class AuthController extends GetxController {
     BethUtils.showSnackBar(
       message: e.code.tr,
       alertType: AlertType.error,
-
     );
   }
   /* -------------------------------------------------------------------------- */

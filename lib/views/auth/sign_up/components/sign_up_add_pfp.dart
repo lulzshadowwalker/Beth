@@ -21,5 +21,6 @@ class SignUpAddPfp extends StatelessWidget {
     await Get.find<AuthController>().signUpWithEmailAndPassword();
 
     Get.find<CredentialsController>().getOffAll(const BethHome());
+    
   }
 }

@@ -13,12 +13,11 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 
 import '../../../controllers/active_tag/active_tag_controller.dart';
-import '../../shared/beth_scaffold/components/beth_scaffold_components.dart';
 import '../../shared/post/components/post_components.dart';
 
 part '../community_wall.dart';
 part 'add_post_floating_button.dart';
 part 'community_wall_tab_bar.dart';
-part 'popular_posts.dart';
 part 'feed.dart';
+part 'popular_posts.dart';
 part 'posts_grid_view.dart';

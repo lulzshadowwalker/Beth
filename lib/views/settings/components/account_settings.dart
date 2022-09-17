@@ -11,8 +11,6 @@ class _AccountSettingsState extends State<_AccountSettings> {
   static final _nameController = TextEditingController();
   static final _emailController = TextEditingController();
 
-
-
   @override
   Widget build(BuildContext context) {
     return GetX(
@@ -29,9 +27,10 @@ class _AccountSettingsState extends State<_AccountSettings> {
 
           /// email
           _OptionTile(
-              title: BethTranslations.email.tr,
-              value: _.data.email,
-              onTap: _onTapEmail,),
+            title: BethTranslations.email.tr,
+            value: _.data.email,
+            onTap: _onTapEmail,
+          ),
 
           /// profile picture
           _OptionTile(
@@ -95,6 +94,8 @@ class _AccountSettingsState extends State<_AccountSettings> {
                 .upload(file: file, childName: 'profilePicture');
 
             await RemoteDbController().updateProfilePicture(downloadUrl!);
+
+            Get.to(() => const Settings());
           },
         ),
       ),

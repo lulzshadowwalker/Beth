@@ -61,10 +61,7 @@ class ChooseAvatar extends StatelessWidget {
   }
 
   void _onTap() {
-
     _onPressed(_file);
-
-    Get.back();
   }
 
   void _selectImage() async {

@@ -1,8 +1,6 @@
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../views/add_post.dart/add_post.dart';
 import '../../views/bookmarks/bookmarks.dart';
 import '../../views/community_wall/components/community_wall_components.dart';
 import '../../views/home/home.dart';

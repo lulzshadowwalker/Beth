@@ -11,7 +11,7 @@ class BethEmailField extends StatelessWidget {
   ///  user data from state management
   const BethEmailField({
     GlobalKey<FormFieldState>? formFieldKey,
-     void Function(String?)? onSaved,
+    void Function(String?)? onSaved,
     TextEditingController? controller,
     Key? key,
   })  : _formFieldKey = formFieldKey,
@@ -33,8 +33,8 @@ class BethEmailField extends StatelessWidget {
       prefixIcon: const Icon(Icons.email_rounded),
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
-        // TODO Check for temporary emails using a third-party API
-        return GetUtils.isEmail(value ?? '')
+        value ??= '';
+        return GetUtils.isEmail(value)
             ? null
             : BethTranslations.emailInvalid.tr;
       },

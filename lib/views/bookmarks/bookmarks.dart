@@ -1,8 +1,6 @@
 import 'package:beth/helpers/beth_animations.dart';
 import 'package:beth/locale/beth_translations.dart';
-import 'package:beth/views/shared/beth_animated_header/beth_animated_header.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:beth/controllers/auth/auth_controller.dart';
 import 'package:beth/controllers/credentials/credentials_controller.dart';
 import 'package:beth/helpers/beth_const.dart';

@@ -84,6 +84,7 @@ class BethTranslations extends Translations {
   static const String feed = 'feed';
   static const String haventAddedItems = 'haventAddedItems';
   static const String bookmarks = 'bookmarks';
+  static const String unauthenticEmail = 'unauthenticEmail';
   /* -------------------------------------------------------------------------- */
 
   /* [FirebaseAuthException] codes -------------------------------------------- */
@@ -182,6 +183,7 @@ class BethTranslations extends Translations {
           feed: 'Feed',
           haventAddedItems: 'Bookmark items to show up here',
           bookmarks: 'bookmarks',
+          unauthenticEmail: 'please use an active email',
         },
         /* -------------------------------------------------------------------------- */
 
@@ -262,6 +264,7 @@ class BethTranslations extends Translations {
           feed: 'المنشورات',
           haventAddedItems: 'احفظ عناصر لكي تظهر هنا',
           bookmarks: 'المحفوظات',
+          unauthenticEmail: 'يرجى استخدام بريد الكتروني فعال',
         },
         /* -------------------------------------------------------------------------- */
       };
