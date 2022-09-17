@@ -76,6 +76,14 @@ class BethTranslations extends Translations {
   static const String submit = 'submit';
   static const String attachScreenshot = 'attachScreenshot';
   static const String tyForSubmitting = 'tyForSubmitting';
+  static const String tellUsMore = 'tellUsMore';
+  static const String postToCommunity = 'postToCommunity';
+  static const String post = 'post';
+  static const String postAddedSuccessfully = 'postAddedSuccessfully';
+  static const String popular = 'popular';
+  static const String feed = 'feed';
+  static const String haventAddedItems = 'haventAddedItems';
+  static const String bookmarks = 'bookmarks';
   /* -------------------------------------------------------------------------- */
 
   /* [FirebaseAuthException] codes -------------------------------------------- */
@@ -137,7 +145,7 @@ class BethTranslations extends Translations {
           step2of2: 'Step 2 of 2',
           home: 'home',
           discover: 'discover',
-          communityWall: 'community',
+          communityWall: 'Community\nwall',
           settings: 'settings',
           bugReport: 'bug report',
           logout: 'logout',
@@ -166,6 +174,14 @@ class BethTranslations extends Translations {
           submit: 'submit',
           attachScreenshot: 'attach a screenshot',
           tyForSubmitting: 'Thank you for submitting',
+          tellUsMore: 'tell us more',
+          postToCommunity: 'Post to community',
+          post: 'post',
+          postAddedSuccessfully: 'post added successfully',
+          popular: 'Popular',
+          feed: 'Feed',
+          haventAddedItems: 'Bookmark items to show up here',
+          bookmarks: 'bookmarks',
         },
         /* -------------------------------------------------------------------------- */
 
@@ -238,6 +254,14 @@ class BethTranslations extends Translations {
           submit: 'إرسال',
           attachScreenshot: 'إرفاق صورة للشاشة',
           tyForSubmitting: 'شكرا على التبليغ',
+          tellUsMore: 'اخبرنا المزيد',
+          postToCommunity: 'انشر إلى المجتمع',
+          post: 'انشر',
+          postAddedSuccessfully: 'تم إضافة المنشور بنجاح',
+          popular: 'الأكثر رواجًا',
+          feed: 'المنشورات',
+          haventAddedItems: 'احفظ عناصر لكي تظهر هنا',
+          bookmarks: 'المحفوظات',
         },
         /* -------------------------------------------------------------------------- */
       };

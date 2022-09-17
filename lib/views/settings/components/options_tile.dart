@@ -21,6 +21,8 @@ class _OptionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
       onTap: _onTap,
       child: Padding(
         padding: const EdgeInsets.only(top: 10),

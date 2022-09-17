@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:beth/helpers/beth_log_printer.dart';
@@ -164,4 +165,11 @@ class BethUtils {
   static int randomNumberInRange({int min = 0, required int max}) {
     return math.Random().nextInt(max - min) + min;
   }
+
+  static int get screenWidth =>
+
+      ///  ..
+      ///  As far as I can tell, [Get.width] returns the relative width of the
+      ///  screen depending on the orientation when launching the aplication.
+      min(Get.width.toInt(), Get.height.toInt());
 }

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:beth/themes/beth_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,7 +29,9 @@ class BethColors {
 
   static Color get accent => BethTheme.isLight ? accent2 : accent1;
 
-  static final Color lightPrimary1 = colorFromHex('F1EDEE');
+  static Color get primary => BethTheme.isLight ? lightPrimary1 : darkPrimary1;
+
+  static final Color lightPrimary1 = colorFromHex('F9F9FB');
   static final Color darkPrimary1 = colorFromHex('1C1B22');
   static final Color secondary1 = colorFromHex('0C3A2D');
   static final Color secondary2 = colorFromHex('BB8A52');

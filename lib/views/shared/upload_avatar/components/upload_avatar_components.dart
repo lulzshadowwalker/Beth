@@ -1,3 +1,4 @@
+import 'package:beth/views/shared/beth_constrained_box/beth_constrained_box.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

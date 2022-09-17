@@ -23,13 +23,7 @@ class ChooseAvatar extends StatelessWidget {
       appBar: AppBar(),
       extendBody: true,
       body: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(
-            minWidth: 150,
-            minHeight: 150,
-            maxHeight: double.infinity,
-            maxWidth: 550,
-          ),
+        child: BethConstrainedBox(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40),
             child: Center(

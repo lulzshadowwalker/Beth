@@ -11,12 +11,7 @@ class _AccountSettingsState extends State<_AccountSettings> {
   static final _nameController = TextEditingController();
   static final _emailController = TextEditingController();
 
-  @override
-  void dispose() {
-    super.dispose();
-    _nameController.dispose();
-    _emailController.dispose();
-  }
+
 
   @override
   Widget build(BuildContext context) {

@@ -22,13 +22,7 @@ class _SettingsState extends State<Settings> {
       title: BethTranslations.settings.tr,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 30),
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(
-            minWidth: 150,
-            minHeight: 150,
-            maxHeight: double.infinity,
-            maxWidth: 550,
-          ),
+        child: BethConstrainedBox(
           child: Center(
             child: Column(children: [
               const _UserTile(),

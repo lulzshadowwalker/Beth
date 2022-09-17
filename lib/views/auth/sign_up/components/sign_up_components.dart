@@ -3,6 +3,7 @@ import 'package:beth/controllers/form/form_controller.dart';
 import 'package:beth/helpers/beth_const.dart';
 import 'package:beth/views/auth/sign_in/components/sign_in_components.dart';
 import 'package:beth/views/shared/beth_animated_header/beth_animated_header.dart';
+import 'package:beth/views/shared/beth_constrained_box/beth_constrained_box.dart';
 import 'package:beth/views/shared/google_auth_elevated_button/google_auth_elevated_button.dart';
 import 'package:beth/views/shared/upload_avatar/components/upload_avatar_components.dart';
 import 'package:flutter/foundation.dart';

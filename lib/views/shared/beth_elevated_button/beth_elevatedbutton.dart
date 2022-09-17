@@ -2,6 +2,7 @@ import 'package:beth/controllers/button/button_controller.dart';
 import 'package:beth/themes/beth_colors.dart';
 import 'package:beth/views/shared/beth_loading_indicator/beth_loading_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
@@ -31,8 +32,7 @@ class BethElevatedButton extends StatelessWidget {
     return GetX(
       init: ButtonController(),
       tag: const Uuid().v4(),
-      builder: (ButtonController _) => InkWell(
-          splashColor: Colors.transparent,
+      builder: (ButtonController _) => Bounceable(
           onTap: () => _.onPressed(_onTap),
           child: Container(
             height: 40,

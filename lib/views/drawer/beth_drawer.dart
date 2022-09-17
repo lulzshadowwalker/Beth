@@ -13,9 +13,9 @@ class BethDrawer extends StatelessWidget {
           ...BethDrawerController().section1,
           const SizedBox(height: 45),
           ...BethDrawerController().section2,
-          const Spacer(flex: 5),
+          const Spacer(flex: 4),
           ...BethDrawerController().section3,
-          const SizedBox(height: 50),
+          const SizedBox(height: 100),
         ]),
       ),
     );

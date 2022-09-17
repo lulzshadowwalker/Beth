@@ -9,6 +9,7 @@ import 'package:beth/models/alert_type.dart';
 import 'package:beth/themes/beth_colors.dart';
 import 'package:beth/themes/beth_theme.dart';
 import 'package:beth/views/bug_report/components/bug_report_components.dart';
+import 'package:beth/views/shared/beth_constrained_box/beth_constrained_box.dart';
 import 'package:beth/views/shared/beth_dropdown_button/beth_dropdown_button.dart';
 import 'package:beth/views/shared/beth_email_field/beth_email_field.dart';
 import 'package:beth/views/shared/single_field/components/single_field_components.dart';

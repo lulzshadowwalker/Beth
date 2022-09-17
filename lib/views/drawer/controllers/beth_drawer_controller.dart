@@ -15,7 +15,6 @@ import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 import '../../../controllers/auth/auth_controller.dart';
 import '../../beth_home/components/beth_home_components.dart';
 import '../../bug_report/components/bug_report_components.dart';
-import '../../community_wall/community_wall.dart';
 import '../../settings/components/settings_components.dart';
 import '../components/beth_drawer_components.dart';
 
@@ -84,14 +83,6 @@ class BethDrawerController extends GetxController {
           ? BethColors.secondary2
           : null,
       onTap: () => Get.to(() => const Discover()),
-    ),
-    BethDrawerTile(
-      iconData: FontAwesomeIcons.userGroup,
-      title: BethTranslations.communityWall.tr,
-      color: ActiveTagController.tag == CommunityWall.tag
-          ? BethColors.secondary2
-          : null,
-      onTap: () => Get.to(() => const CommunityWall()),
     ),
   ];
 

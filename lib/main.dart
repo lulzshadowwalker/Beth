@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:beth/controllers/auth/auth_controller.dart';
 import 'package:beth/controllers/credentials/credentials_controller.dart';
+import 'package:beth/helpers/beth_const.dart';
+import 'package:beth/helpers/beth_utils.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,12 +22,7 @@ void main() async {
   Get.put(AuthController(), permanent: true);
 
   /* RESTRICT SCREEN ORIENTATION ---------------------------------------------- */
-  ///  ..
-  ///  As far as I can tell, [Get.width] returns the relative width of the
-  ///  screen depending on the orientation when launching the aplication.
-  final int smallerDimension = min(Get.width.toInt(), Get.height.toInt());
-
-  if (smallerDimension <= 744) {
+  if (BethUtils.screenWidth <= BethConst.tabletWidth) {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,

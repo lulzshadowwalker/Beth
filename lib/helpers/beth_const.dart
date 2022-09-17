@@ -30,4 +30,6 @@ class BethConst {
   static const String gUserId = 'email';
 
   static const String nameFallBack = '\t\t..';
+
+  static const int tabletWidth = 744;
 }

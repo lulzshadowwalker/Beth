@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../views/add_post.dart/add_post.dart';
 import '../../views/bookmarks/bookmarks.dart';
+import '../../views/community_wall/components/community_wall_components.dart';
 import '../../views/home/home.dart';
 
 class BottomNavBarController extends GetxController {
@@ -20,8 +21,8 @@ class BottomNavBarController extends GetxController {
     const Home(): DotNavigationBarItem(
       icon: const Icon(Icons.home),
     ),
-    const AddPost(): DotNavigationBarItem(
-      icon: const Icon(Icons.add_box_rounded),
+    const CommunityWall(): DotNavigationBarItem(
+      icon: const Icon(Icons.group),
     ),
   };
 

@@ -4,6 +4,7 @@ import 'package:beth/controllers/credentials/credentials_controller.dart';
 import 'package:beth/controllers/storage/remote_storage/remote_storage_controller.dart';
 import 'package:beth/helpers/beth_utils.dart';
 import 'package:beth/locale/beth_translations.dart';
+import 'package:beth/models/beth_post.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
@@ -32,6 +33,13 @@ class RemoteDbController {
   static const String _kAttachment = 'attachment';
   static const String _kReportId = 'reportId';
   static const String _kReportedBy = 'reportedBy';
+  static const String _kPosts = 'posts';
+  static const String _kImageUrl = 'imageUrl';
+  static const String _kPostedBy = 'postedBy';
+  static const String _kPostId = 'postId';
+  static const String _kLikes = 'likes';
+  static const String _kReactionType = 'reactionType';
+  static const String _kLikedBy = 'likedBy';
   /* -------------------------------------------------------------------------- */
 
   static String? get _uid => Get.find<AuthController>().getUserId;
@@ -135,12 +143,13 @@ class RemoteDbController {
     try {
       final reportId = const Uuid().v4();
 
-      Map<String, String?> reportInfo = {
+      Map<String, Object?> reportInfo = {
         _kSubject: subject,
         _kDescription: description,
         _kAttachment: attachment,
         _kReportId: reportId,
         _kReportedBy: _uid,
+        _kDateCreated: DateTime.now().toUtc(),
       };
 
       await _firestore.collection(_kUsers).doc(_uid).update({
@@ -155,6 +164,74 @@ class RemoteDbController {
         message: BethTranslations.tyForSubmitting.tr,
         alertType: AlertType.success,
       );
+    } on SocketException {
+      BethUtils.handleSocketException(_log);
+    } catch (e) {
+      BethUtils.handleUnkownError(e, _log);
+    }
+  }
+
+  Future<void> addPost({
+    required String imageUrl,
+    String? description,
+  }) async {
+    try {
+      final postId = const Uuid().v4();
+
+      Map<String, Object?> postInfo = {
+        _kDescription: description,
+        _kImageUrl: imageUrl,
+        _kPostedBy: _uid,
+        _kDateCreated: DateTime.now().toUtc(),
+        _kPostId: postId,
+        _kLikes: [],
+      };
+
+      await _firestore.collection(_kUsers).doc(_uid).update({
+        _kPosts: FieldValue.arrayUnion([postInfo])
+      });
+      _log.v('added post to the user\'s record successfully');
+
+      await _firestore.collection(_kPosts).doc(postId).set(postInfo);
+      _log.v('added post to the posts collection successfully');
+
+      BethUtils.showSnackBar(
+        message: BethTranslations.postAddedSuccessfully.tr,
+        alertType: AlertType.success,
+      );
+    } on SocketException {
+      BethUtils.handleSocketException(_log);
+    } catch (e) {
+      BethUtils.handleUnkownError(e, _log);
+    }
+  }
+
+  Stream<List<BethPost>> get posts =>
+      _firestore.collection(_kPosts).snapshots().map((querySnapshot) {
+        List<BethPost> postsList = [];
+        for (var e in querySnapshot.docs) {
+          postsList.add(BethPost.fromDocumentSnapshot(e));
+        }
+        return postsList;
+      });
+
+  Future<void> likePost(String postId, String reactionType) async {
+    try {
+      Map<String, Object?> likeInfo = {
+        _kReactionType: reactionType,
+        _kLikedBy: _uid,
+        _kDateCreated: DateTime.now().toUtc(),
+      };
+
+      /// TODO add the reaction the post at the owner's record
+      /// TODO restrict users from adding multiple reactions
+
+      await _firestore.collection(_kPosts).doc(postId).update({
+        _kLikes: FieldValue.arrayUnion([likeInfo])
+      });
+      _log.v('added reaction to the post at the posts collection successfully');
+
+     
     } on SocketException {
       BethUtils.handleSocketException(_log);
     } catch (e) {

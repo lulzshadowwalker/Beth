@@ -12,19 +12,13 @@ class SignUp extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(
-              minWidth: 150,
-              minHeight: 150,
-              maxHeight: double.infinity,
-              maxWidth: 550,
-            ),
+          child: BethConstrainedBox(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Spacer(flex: 2),
-
+          
                 BethAnimatedHeader(text: BethTranslations.signUp.tr),
                 const Spacer(),
                 Form(
@@ -41,18 +35,18 @@ class SignUp extends StatelessWidget {
                     ],
                   ),
                 ),
-
+          
                 const SizedBox(height: 30),
                 const _EmailAndPasswordSignUpElevatedButton(),
-
+          
                 BethDivider(
                     child: Text(BethTranslations.or.tr,
                         style: Theme.of(context).textTheme.bodySmall)),
-
+          
                 const GoogleAuthElevatedButton(isSignIn: false),
-
+          
                 const Spacer(flex: 2),
-
+          
                 BethRichTextButton(
                   text: BethTranslations.alreadyHaveAnAccount.tr,
                   textCTA: BethTranslations.signIn.tr,

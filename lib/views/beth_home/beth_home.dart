@@ -23,7 +23,7 @@ class _BethHomeState extends State<BethHome> {
   @override
   Widget build(BuildContext context) {
     return BethScaffold(
-      bottomNavbigationBar: const _BottomNavigationBar(),
+      bottomNavbigationBar: const _BethBottomNavigationBar(),
       actions: const [
         Padding(
           padding: EdgeInsets.only(right: 32.0),
@@ -31,9 +31,9 @@ class _BethHomeState extends State<BethHome> {
         ),
       ],
       body: GetX(
-        builder: (BottomNavBarController _) =>
-            _.items.keys.elementAt(_.selectedIndex),
-      ),
+          builder: (BottomNavBarController _) => 
+                _.items.keys.elementAt(_.selectedIndex),
+              )
     );
   }
 }

@@ -15,15 +15,24 @@ class BethAnimatedHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedTextKit(
-      animatedTexts: <AnimatedText>[
-        TypewriterAnimatedText(
-          _text,
-          textStyle: _textStyle ?? Theme.of(context).textTheme.headline3,
-          speed: const Duration(milliseconds: 100),
-        ),
-      ],
-      totalRepeatCount: 1,
+    return Align(
+      alignment: Directionality.of(context) == TextDirection.ltr
+          ? Alignment.centerLeft
+          : Alignment.centerRight,
+      child: AnimatedTextKit(
+        animatedTexts: <AnimatedText>[
+          TypewriterAnimatedText(
+            _text,
+            textStyle: _textStyle ??
+                Theme.of(context)
+                    .textTheme
+                    .headline4
+                    ?.copyWith(fontWeight: FontWeight.bold),
+            speed: const Duration(milliseconds: 100),
+          ),
+        ],
+        totalRepeatCount: 1,
+      ),
     );
   }
 }

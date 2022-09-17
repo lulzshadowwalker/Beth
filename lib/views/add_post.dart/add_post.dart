@@ -1,10 +1,110 @@
+import 'package:beth/controllers/database/remote/remote_db_controller.dart';
+import 'package:beth/controllers/storage/remote_storage/remote_storage_controller.dart';
+import 'package:beth/helpers/beth_animations.dart';
+import 'package:beth/locale/beth_translations.dart';
+import 'package:beth/views/beth_home/components/beth_home_components.dart';
+import 'package:beth/views/shared/beth_animated_header/beth_animated_header.dart';
+import 'package:beth/views/shared/beth_constrained_box/beth_constrained_box.dart';
+import 'package:beth/views/shared/beth_elevated_button/beth_elevatedbutton.dart';
+import 'package:beth/views/shared/beth_text_form_field/beth_textformfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
+import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
-class AddPost extends StatelessWidget {
+import '../../controllers/image/image_controller.dart';
+import '../../helpers/beth_utils.dart';
+import '../../models/alert_type.dart';
+
+class AddPost extends StatefulWidget {
   const AddPost({Key? key}) : super(key: key);
 
   @override
+  State<AddPost> createState() => _AddPostState();
+}
+
+class _AddPostState extends State<AddPost> {
+  @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Add post'));
+    return Scaffold(
+      resizeToAvoidBottomInset: true,
+      appBar: AppBar(),
+      body: BethConstrainedBox(
+          child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 35),
+        child: Column(
+          children: [
+            /// header
+            BethAnimatedHeader(
+              text: BethTranslations.postToCommunity.tr,
+            ),
+
+            /// image
+            GetBuilder(
+              builder: (ImageController _) => Expanded(
+                flex: 2,
+                child: _.getImage == null
+                    ? Bounceable(
+                        onTap: _pickImage,
+                        child: Lottie.asset(BethAnimations.uploadField),
+                      )
+                    : Card(
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        elevation: 8,
+                        child: Image.memory(
+                          _.getImage!,
+                          filterQuality: FilterQuality.high,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+              ),
+            ),
+
+            /// description
+            BethTextFormField(
+              hintText: BethTranslations.tellUsMore.tr,
+              prefixIcon: const Icon(Icons.info),
+              controller: _moreInfoController,
+            ),
+            const SizedBox(height: 25),
+            BethElevatedButton(onTap: _post, text: BethTranslations.post.tr),
+            const Spacer(),
+          ],
+        ),
+      )),
+    );
+  }
+
+  final _moreInfoController = TextEditingController();
+  final _imageController = Get.put(ImageController());
+
+  @override
+  void dispose() {
+    super.dispose();
+    _moreInfoController.dispose();
+  }
+
+  void _pickImage() async =>
+      _imageController.setImage = await BethUtils.selectImage();
+
+  void _post() async {
+    final image = _imageController.getImage;
+    if (image == null) {
+      BethUtils.showSnackBar(
+        message: BethTranslations.noImageSelected.tr,
+        alertType: AlertType.error,
+      );
+      return;
+    }
+    final imageUrl =
+        await RemoteStorageController().upload(file: image, childName: 'posts');
+
+    await RemoteDbController().addPost(
+        imageUrl: imageUrl!, description: _moreInfoController.text.trim());
+
+    _moreInfoController.clear();
+    _imageController.clear();
+
+    Get.off(() => const BethHome());
   }
 }

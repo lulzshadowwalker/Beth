@@ -6,17 +6,20 @@ class BethScaffold extends StatelessWidget {
     Widget? bottomNavbigationBar,
     List<Widget>? actions,
     String? title,
+    bool resizeToAvoidBottomInset = false,
     Key? key,
   })  : _body = body,
         _bottomNavigationBar = bottomNavbigationBar,
         _actions = actions,
         _title = title,
+        _resizeToAvoidBottomInset = resizeToAvoidBottomInset,
         super(key: key);
 
   final Widget _body;
   final Widget? _bottomNavigationBar;
   final List<Widget>? _actions;
   final String? _title;
+  final bool _resizeToAvoidBottomInset;
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
@@ -32,7 +35,7 @@ class BethScaffold extends StatelessWidget {
           background: BethColors.secondary1,
           child: Scaffold(
             extendBody: true,
-            resizeToAvoidBottomInset: false,
+            resizeToAvoidBottomInset: _resizeToAvoidBottomInset,
             appBar: _BethAppBar(
               actions: _actions,
               leading: _.icon,
