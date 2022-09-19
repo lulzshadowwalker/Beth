@@ -15,18 +15,15 @@ class _BethAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: _leading,
-      actions: _actions,
-      title: _title != null
-          ? Text(
-              _title!,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6
-                  ?.copyWith(fontWeight: FontWeight.bold),
-            )
-          : null,
-    );
+        leading: _leading,
+        actions: _actions,
+        title: Text(
+          _title ?? '',
+          style: Theme.of(context)
+              .textTheme
+              .headline6
+              ?.copyWith(fontWeight: FontWeight.bold),
+        ));
   }
 
   @override

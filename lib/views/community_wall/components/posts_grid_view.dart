@@ -15,7 +15,10 @@ class _PostsGridView extends StatelessWidget {
       crossAxisCount: BethUtils.screenWidth >= BethConst.tabletWidth ? 3 : 2,
       mainAxisSpacing: 20,
       crossAxisSpacing: 20,
-      itemBuilder: (context, index) => Post(postData: posts[index]),
+      itemBuilder: (context, index) => Post(
+        postData: posts[index],
+        index: index,
+      ),
     );
   }
 }

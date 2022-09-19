@@ -1,5 +1,4 @@
 import 'package:beth/themes/beth_colors.dart';
-import 'package:beth/themes/beth_theme.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,9 +24,7 @@ class UserAvatar extends StatelessWidget {
                 height: _radius ?? 40,
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: BethTheme.isLight
-                        ? BethColors.secondary1
-                        : BethColors.secondary2,
+                    color: BethColors.secondary1,
                     width: 2,
                   ),
                   color: BethColors.lightPrimary1,

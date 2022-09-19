@@ -3,14 +3,17 @@ part of './components/post_components.dart';
 class Post extends StatelessWidget {
   Post({
     required BethPost? postData,
+    required int index,
     Key? key,
   })  : _data = postData,
+        _index = index,
         super(key: key);
 
   final BethPost? _data;
   static final _controllerTag = const Uuid().v4();
   final _reactionsController =
       Get.put(ReactionsController(), tag: _controllerTag);
+  final int _index;
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +23,20 @@ class Post extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
         child: (_data?.imageUrl ?? '').isNotEmpty
             ? GetBuilder(
-                tag: _controllerTag,
-                builder: (ReactionsController _) => AnimatedScale(
-                  scale: _.scale,
-                  duration: const Duration(milliseconds: 300),
-                  child: ReactionContainer(
-                    boxColor: BethColors.primary.withOpacity(0.5),
-                    onReactionChanged: _onReactionChanged,
-                    reactions: ReactionsController().reactions,
-                    child: CachedNetworkImage(imageUrl: _data!.imageUrl!),
+                init: ScaleController(),
+                tag: const Uuid().v4(),
+                builder: (ScaleController scaleController) => GetBuilder(
+                  tag: _controllerTag,
+                  builder: (ReactionsController reactionController) =>
+                      BethAnimatedScale(
+                    scale: scaleController.scale,
+                    index: _index,
+                    child: ReactionContainer(
+                      boxColor: BethColors.primary.withOpacity(0.5),
+                      onReactionChanged: _onReactionChanged,
+                      reactions: ReactionsController().reactions,
+                      child: CachedNetworkImage(imageUrl: _data!.imageUrl!),
+                    ),
                   ),
                 ),
               )

@@ -8,8 +8,8 @@ class BethTranslations extends Translations {
         arabicLanguageKey: arabic,
       };
 
-  /// returns the language name of the current locale
-  static String? get currentLanguageName => Get.locale?.languageCode;
+  /// returns the language code of the current locale
+  static String? get currentLanguageCode => Get.locale?.languageCode;
 
   static const String english = 'English';
   static const String englishLanguageKey = 'en';
@@ -85,6 +85,8 @@ class BethTranslations extends Translations {
   static const String haventAddedItems = 'haventAddedItems';
   static const String bookmarks = 'bookmarks';
   static const String unauthenticEmail = 'unauthenticEmail';
+  static const String bethWonders = 'bethWonders';
+  static const String showOnMap = 'showOnMap';
   /* -------------------------------------------------------------------------- */
 
   /* [FirebaseAuthException] codes -------------------------------------------- */
@@ -184,6 +186,8 @@ class BethTranslations extends Translations {
           haventAddedItems: 'Bookmark items to show up here',
           bookmarks: 'bookmarks',
           unauthenticEmail: 'please use an active email',
+          bethWonders: 'the wonders of Beth-arbel',
+          showOnMap: 'show on map',
         },
         /* -------------------------------------------------------------------------- */
 
@@ -265,6 +269,8 @@ class BethTranslations extends Translations {
           haventAddedItems: 'احفظ عناصر لكي تظهر هنا',
           bookmarks: 'المحفوظات',
           unauthenticEmail: 'يرجى استخدام بريد الكتروني فعال',
+          bethWonders: 'خبايا أرابيلا',
+          showOnMap: 'أظهر على الخريطة',
         },
         /* -------------------------------------------------------------------------- */
       };

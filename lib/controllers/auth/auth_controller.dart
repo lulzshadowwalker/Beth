@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:beth/controllers/credentials/credentials_controller.dart';
 import 'package:beth/controllers/database/remote/remote_db_controller.dart';
-import 'package:beth/controllers/eva_api/eva_api_controller.dart';
 import 'package:beth/helpers/beth_utils.dart';
 import 'package:beth/locale/beth_translations.dart';
 import 'package:beth/models/alert_type.dart';
@@ -12,13 +11,17 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:logger/logger.dart';
 
+import '../../views/auth/sign_in/components/sign_in_components.dart';
+import '../../views/beth_home/components/beth_home_components.dart';
+import '../current_user/current_user_controller.dart';
+
 class AuthController extends GetxController {
   /// Authentication Controller
   final Logger _log = BethUtils.getLogger(_className);
 
   static final FirebaseAuth _auth = FirebaseAuth.instance;
   final _remoteDb = RemoteDbController();
-  final _credentials = Get.find<CredentialsController>();
+  final _credentials = Get.put(CredentialsController());
 
   /* STRING CONSTANTS --------------------------------------------------------- */
   static const String _className = 'AuthController';
@@ -27,30 +30,33 @@ class AuthController extends GetxController {
   String? get getUserId => _auth.currentUser?.uid;
   User? get _user => _auth.currentUser;
 
-  // final _firebaseUser = Rx<User?>(_auth.currentUser);
+  final _firebaseUser = Rx<User?>(_auth.currentUser);
 
-  // @override
-  // void onInit() {
-  //   /// [onReady] happens one frame after allocating the object in the memory aka [onInit]
-  //   super.onInit();
+  @override
+  void onInit() {
+    /// [onReady] happens one frame after allocating the object in the memory aka [onInit]
+    super.onInit();
 
-  //   /// Wrapper
-  //   _firebaseUser.bindStream(_auth.authStateChanges());
+    /// Wrapper
+    _firebaseUser.bindStream(_auth.authStateChanges());
 
-  //   /// Show suitable screen depending on the auth status
-  //   ever(_firebaseUser, _setScreen);
-  // }
+    /// Show suitable screen depending on the auth status
+    ever(_firebaseUser, _setScreen);
 
-  // /// auth/home screen depending on auth state
-  // /// function callback in the [ever] worker or event
-  // _setScreen(User? currentUser) {
-  //   currentUser == null
-  //       ? Get.offAll(() => SignIn())
-  //       : {
-  //           Get.put(() => CurrentUserController(), permanent: true),
-  //           Get.offAll(() => const BethHome())
-  //         };
-  // }
+    Get.put(CredentialsController());
+  }
+
+  /// auth/home screen depending on auth state
+  ///  ..
+  ///  function callback in the [ever] worker or event
+  _setScreen(User? currentUser) {
+    currentUser == null
+        ? Get.offAll(const SignIn())
+        : {
+            Get.put(() => CurrentUserController(), permanent: true),
+            Get.offAll(const BethHome())
+          };
+  }
 
   /* GUEST -------------------------------------------------------------------- */
   Future<void> guestSignIn() async {
@@ -83,16 +89,6 @@ class AuthController extends GetxController {
 
   Future<void> signUpWithEmailAndPassword() async {
     try {
-      final isAuthenticEmail =
-          await EvaApiController().verifyEmail(_credentials.userData.email);
-      if (!isAuthenticEmail) {
-        BethUtils.showSnackBar(
-          message: BethTranslations.unauthenticEmail.tr,
-          alertType: AlertType.error,
-        );
-        throw Exception('unauthentic email');
-      }
-
       final userCredential = await _auth.createUserWithEmailAndPassword(
         email: _credentials.userData.email,
         password: _credentials.userData.password,

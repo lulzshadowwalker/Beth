@@ -1,0 +1,36 @@
+import 'package:beth/controllers/scale/scale_controller.dart';
+import 'package:beth/helpers/beth_images.dart';
+import 'package:beth/helpers/beth_utils.dart';
+import 'package:beth/locale/beth_translations.dart';
+import 'package:beth/themes/beth_colors.dart';
+import 'package:beth/views/beth_webview/beth_webview.dart';
+import 'package:beth/views/shared/beth_animated_header/beth_animated_header.dart';
+import 'package:beth/views/shared/beth_elevated_button/beth_elevatedbutton.dart';
+import 'package:beth/views/shared/beth_markdown_body/beth_markdown_body.dart';
+import 'package:beth/views/shared/beth_slideshow/beth_slideshow.dart';
+import 'package:beth/views/shared/shadow_mask/shadow_mask.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:uuid/uuid.dart';
+
+import '../../../controllers/active_tag/active_tag_controller.dart';
+import '../../../controllers/apis/beth/bethapi_controller.dart';
+import '../../../models/bethapi.dart';
+import '../../shared/beth_animated_scale/beth_animated_scale.dart';
+import '../../shared/beth_scaffold/components/beth_scaffold_components.dart';
+import '../../shared/beth_tab_bar/beth_tab_bar.dart';
+import '../../shared/bottom_nav_bar_constrained_box/bottom_nav_bar_constrained_box.dart';
+
+part './header_custom_clipper.dart';
+part '../controllers/discover_controller.dart';
+part '../discover.dart';
+part 'beth_tab.dart';
+part 'detailed_view.dart';
+part 'discover_header.dart';
+part 'link_card.dart';
+part 'preview_card.dart';
+part 'section.dart';
+part 'launch_map_button.dart';

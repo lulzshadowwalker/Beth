@@ -15,6 +15,7 @@ import 'package:lottie/lottie.dart';
 import '../../controllers/image/image_controller.dart';
 import '../../helpers/beth_utils.dart';
 import '../../models/alert_type.dart';
+import '../shared/bottom_nav_bar_constrained_box/bottom_nav_bar_constrained_box.dart';
 
 class AddPost extends StatefulWidget {
   const AddPost({Key? key}) : super(key: key);
@@ -29,49 +30,60 @@ class _AddPostState extends State<AddPost> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(),
-      body: BethConstrainedBox(
-          child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 35),
-        child: Column(
-          children: [
-            /// header
-            BethAnimatedHeader(
-              text: BethTranslations.postToCommunity.tr,
-            ),
-
-            /// image
-            GetBuilder(
-              builder: (ImageController _) => Expanded(
-                flex: 2,
-                child: _.getImage == null
-                    ? Bounceable(
-                        onTap: _pickImage,
-                        child: Lottie.asset(BethAnimations.uploadField),
-                      )
-                    : Card(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        elevation: 8,
-                        child: Image.memory(
-                          _.getImage!,
-                          filterQuality: FilterQuality.high,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-              ),
-            ),
-
-            /// description
-            BethTextFormField(
-              hintText: BethTranslations.tellUsMore.tr,
-              prefixIcon: const Icon(Icons.info),
-              controller: _moreInfoController,
-            ),
-            const SizedBox(height: 25),
-            BethElevatedButton(onTap: _post, text: BethTranslations.post.tr),
-            const Spacer(),
-          ],
+      extendBody: true,
+      bottomNavigationBar: BottomNavBarConstrainedBox(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 45.0, vertical: 65),
+          child: BethElevatedButton(
+            borderless: false,
+            onTap: _post,
+            text: BethTranslations.post.tr,
+          ),
         ),
-      )),
+      ),
+      body: BethConstrainedBox(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 35),
+          child: Column(
+            children: [
+              /// header
+              BethAnimatedHeader(
+                text: BethTranslations.postToCommunity.tr,
+              ),
+
+              /// image
+              GetBuilder(
+                builder: (ImageController _) => Expanded(
+                  flex: 2,
+                  child: _.getImage == null
+                      ? Bounceable(
+                          onTap: _pickImage,
+                          child: Lottie.asset(BethAnimations.uploadField),
+                        )
+                      : Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          elevation: 8,
+                          child: Image.memory(
+                            _.getImage!,
+                            filterQuality: FilterQuality.high,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                ),
+              ),
+
+              /// description
+              BethTextFormField(
+                hintText: BethTranslations.tellUsMore.tr,
+                prefixIcon: const Icon(Icons.info),
+                controller: _moreInfoController,
+              ),
+
+              const Spacer(),
+            ],
+          ),
+        ),
+      ),
     );
   }
 

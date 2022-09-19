@@ -1,9 +1,21 @@
 part of './components/sign_up_components.dart';
 
-class SignUp extends StatelessWidget {
-  SignUp({Key? key}) : super(key: key);
+class SignUp extends StatefulWidget {
+  const SignUp({Key? key}) : super(key: key);
 
-  final _formController = Get.put(FormController(), tag: BethConst.signUpForm);
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
+  late FormController _formController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _formController = Get.put(FormController(), tag: BethConst.signUpForm);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +30,7 @@ class SignUp extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Spacer(flex: 2),
-          
+
                 BethAnimatedHeader(text: BethTranslations.signUp.tr),
                 const Spacer(),
                 Form(
@@ -35,24 +47,24 @@ class SignUp extends StatelessWidget {
                     ],
                   ),
                 ),
-          
+
                 const SizedBox(height: 30),
                 const _EmailAndPasswordSignUpElevatedButton(),
-          
+
                 BethDivider(
                     child: Text(BethTranslations.or.tr,
                         style: Theme.of(context).textTheme.bodySmall)),
-          
+
                 const GoogleAuthElevatedButton(isSignIn: false),
-          
+
                 const Spacer(flex: 2),
-          
+
+                // footer
                 BethRichTextButton(
                   text: BethTranslations.alreadyHaveAnAccount.tr,
                   textCTA: BethTranslations.signIn.tr,
                   onTap: _alreadyHaveAnAccount,
                 )
-                // footer
               ],
             ),
           ),
@@ -62,7 +74,7 @@ class SignUp extends StatelessWidget {
   }
 
   void _alreadyHaveAnAccount() {
-    Get.find<CredentialsController>().getOff(SignIn());
+    Get.find<CredentialsController>().getOff(const SignIn());
   }
 
   void _onSaved(String? value) {

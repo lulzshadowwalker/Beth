@@ -22,6 +22,7 @@ class GoogleAuthElevatedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BethElevatedButton(
+      borderless: false,
       onTap: _onTap,
       text: _isSignIn
           ? BethTranslations.signInWithGoogle.tr

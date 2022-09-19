@@ -6,6 +6,7 @@ import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../drawer/components/beth_drawer_components.dart';
+import '../../bottom_nav_bar_constrained_box/bottom_nav_bar_constrained_box.dart';
 
 part '../beth_scaffold.dart';
 part 'beth_app_bar.dart';

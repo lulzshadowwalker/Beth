@@ -42,7 +42,7 @@ class _OptionTile extends StatelessWidget {
           const SizedBox(width: 10),
           _trailing ??
               FaIcon(
-                Directionality.of(context) == TextDirection.ltr
+                BethUtils.isLtr
                     ? FontAwesomeIcons.angleRight
                     : FontAwesomeIcons.angleLeft,
                 size: 14,

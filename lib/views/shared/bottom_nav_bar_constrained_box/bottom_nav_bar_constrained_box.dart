@@ -15,8 +15,6 @@ class BottomNavBarConstrainedBox extends StatelessWidget {
       child: ConstrainedBox(
         constraints: const BoxConstraints(
           minWidth: 150,
-          minHeight: 150,
-          maxHeight: double.infinity,
           maxWidth: 550,
         ),
         child: _child,

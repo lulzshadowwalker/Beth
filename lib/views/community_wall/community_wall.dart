@@ -31,7 +31,14 @@ class _CommunityWallState extends State<CommunityWall>
             const SizedBox(height: 100),
 
             /// tabbar
-            _CommunityWallTabBar(tabController: tabController),
+            BethTabBar(
+              tabController: tabController,
+              padding: const EdgeInsets.only(bottom: 30),
+              tabs: [
+                Text(BethTranslations.popular.tr),
+                Text(BethTranslations.feed.tr),
+              ],
+            ),
             Expanded(
               child: TabBarView(
                   controller: tabController,

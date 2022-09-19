@@ -10,9 +10,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../controllers/apis/eva/eva_api_controller.dart';
 import '../../../../controllers/auth/auth_controller.dart';
+import '../../../../helpers/beth_utils.dart';
 import '../../../../locale/beth_translations.dart';
-import '../../../beth_home/components/beth_home_components.dart';
+import '../../../../models/alert_type.dart';
 import '../../../shared/beth_divider/beth_divider.dart';
 import '../../../shared/beth_elevated_button/beth_elevatedbutton.dart';
 import '../../../shared/beth_email_field/beth_email_field.dart';

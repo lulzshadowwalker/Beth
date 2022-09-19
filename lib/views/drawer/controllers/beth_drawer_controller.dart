@@ -3,7 +3,6 @@ import 'package:beth/controllers/current_user/current_user_controller.dart';
 import 'package:beth/helpers/beth_const.dart';
 import 'package:beth/locale/beth_translations.dart';
 import 'package:beth/themes/beth_colors.dart';
-import 'package:beth/views/discover/discover.dart';
 import 'package:beth/views/profile/profile.dart';
 import 'package:beth/views/shared/beth_tile/beth_tile.dart';
 import 'package:beth/views/shared/user_avatar/user_avatar.dart';
@@ -15,6 +14,7 @@ import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 import '../../../controllers/auth/auth_controller.dart';
 import '../../beth_home/components/beth_home_components.dart';
 import '../../bug_report/components/bug_report_components.dart';
+import '../../discover/components/discover_components.dart';
 import '../../settings/components/settings_components.dart';
 import '../components/beth_drawer_components.dart';
 
@@ -32,7 +32,7 @@ class BethDrawerController extends GetxController {
   Widget get icon => IconButton(
         onPressed: _toggle,
         icon: FaIcon(
-          _closed ? FontAwesomeIcons.bars : FontAwesomeIcons.xmark,
+          _closed ? FontAwesomeIcons.barsStaggered : FontAwesomeIcons.xmark,
         ),
         padding: EdgeInsets.only(left: 32, top: _closed ? 0 : 32),
         iconSize: 26,

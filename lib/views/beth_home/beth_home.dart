@@ -17,23 +17,22 @@ class _BethHomeState extends State<BethHome> {
   void initState() {
     super.initState();
     ActiveTagController.tag = BethHome.tag;
-    Get.put(BottomNavBarController(selectedIndex: 1));
+    Get.put(BottomNavBarController(selectedIndex: 2));
   }
 
   @override
   Widget build(BuildContext context) {
     return BethScaffold(
-      bottomNavbigationBar: const _BethBottomNavigationBar(),
-      actions: const [
-        Padding(
-          padding: EdgeInsets.only(right: 32.0),
-          child: UserAvatar(),
-        ),
-      ],
-      body: GetX(
-          builder: (BottomNavBarController _) => 
-                _.items.keys.elementAt(_.selectedIndex),
-              )
-    );
+        bottomNavigationBar: const _BethBottomNavigationBar(),
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(right: 32.0),
+            child: UserAvatar(),
+          ),
+        ],
+        body: GetX(
+          builder: (BottomNavBarController _) =>
+              _.items.keys.elementAt(_.selectedIndex),
+        ));
   }
 }

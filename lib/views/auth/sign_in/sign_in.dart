@@ -1,9 +1,21 @@
 part of './components/sign_in_components.dart';
 
-class SignIn extends StatelessWidget {
-  SignIn({Key? key}) : super(key: key);
+class SignIn extends StatefulWidget {
+  const SignIn({Key? key}) : super(key: key);
 
-  final _formController = Get.put(FormController(), tag: BethConst.signInForm);
+  @override
+  State<SignIn> createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
+  late FormController _formController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _formController = Get.put(FormController(), tag: BethConst.signInForm);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +32,9 @@ class SignIn extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Spacer(flex: 2),
-          
+
                 BethAnimatedHeader(text: BethTranslations.signIn.tr),
-          
+
                 const Spacer(),
                 Form(
                   key: _formController.formKey,
@@ -33,19 +45,19 @@ class SignIn extends StatelessWidget {
                     ],
                   ),
                 ),
-          
+
                 const _ForgotPasswordTextButton(),
-          
+
                 const _EmailAndPasswordSignInElevatedButton(),
-          
+
                 BethDivider(
                     child: Text(BethTranslations.or.tr,
                         style: Theme.of(context).textTheme.caption)),
-          
+
                 const GoogleAuthElevatedButton(isSignIn: true),
-          
+
                 const Spacer(flex: 2),
-          
+
                 BethRichTextButton(
                     text: BethTranslations.dontHaveAnAccount.tr,
                     textCTA: BethTranslations.signUp.tr,
@@ -60,7 +72,7 @@ class SignIn extends StatelessWidget {
   }
 
   void _dontHaveAnAccount() {
-    Get.find<CredentialsController>().getOff(SignUp());
+    Get.find<CredentialsController>().getOff(const SignUp());
   }
 
   void _onSaved(String? value) {

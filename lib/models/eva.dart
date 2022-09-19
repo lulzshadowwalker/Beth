@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 /// data model for recieving the response from the EVA api. ( https://eva.pingutil.com )
 class Eva {
   String? _status;
@@ -95,5 +96,10 @@ class Data {
     data['gibberish'] = _gibberish;
     data['spam'] = _spam;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'Data(_emailAddress: $_emailAddress, _domain: $_domain, _validSyntax: $_validSyntax, _disposable: $_disposable, _webmail: $_webmail, _deliverable: $_deliverable, _catchAll: $_catchAll, _gibberish: $_gibberish, _spam: $_spam)';
   }
 }

@@ -8,15 +8,16 @@ import 'package:google_fonts/google_fonts.dart';
 import '../helpers/beth_const.dart';
 
 class BethTheme {
-  static final String? _enFontFamily = GoogleFonts.poppins().fontFamily;
+  static final String? _enFontFamily = GoogleFonts.kanit().fontFamily;
   static final String? _arFontFamily = GoogleFonts.tajawal().fontFamily;
   static final TextTheme _textTheme = Get.textTheme.apply(
-        /// displayColor ~>  headline4, headline3, headline2, headline1, and caption
-        /// bodyColor  ~> is applied to the remaining text styles.
+    /// displayColor ~>  headline4, headline3, headline2, headline1, and caption
+    /// bodyColor  ~> is applied to the remaining text styles.
 
-        fontFamily:
-            Get.locale == const Locale('ar') ? _arFontFamily : _enFontFamily,
-      );
+    fontFamily: GetStorage().read(BethConst.languageCode) == 'ar'
+        ? _arFontFamily
+        : _enFontFamily,
+  );
 
   /// returns a map of all the currently supported themes and their corresponding names
   static Map<Brightness, String> get themes => {

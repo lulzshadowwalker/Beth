@@ -16,7 +16,6 @@ import '../../auth/auth_controller.dart';
 class RemoteDbController {
   final _firestore = FirebaseFirestore.instance;
   final _log = BethUtils.getLogger(_className);
-  final _credentials = Get.find<CredentialsController>();
   final _remoteStorage = RemoteStorageController();
 
   /* STRING CONSTANTS --------------------------------------------------------- */
@@ -46,7 +45,9 @@ class RemoteDbController {
 
   Future<void> registerUser() async {
     try {
-      final profilePicture = _credentials.userData.profilePicture;
+      final credentials = Get.find<CredentialsController>();
+
+      final profilePicture = credentials.userData.profilePicture;
       if (profilePicture != null) {
         final downloadUrl = await _remoteStorage.upload(
           file: profilePicture,
@@ -64,16 +65,16 @@ class RemoteDbController {
       String? uid = Get.find<AuthController>().getUserId;
 
       await _firestore.collection(_kUsers).doc(uid).set({
-        _kName: _credentials.userData.name,
-        _kEmail: _credentials.userData.email,
+        _kName: credentials.userData.name,
+        _kEmail: credentials.userData.email,
         _kDateCreated: DateTime.now().toUtc(),
-        _kProfilePicture: _credentials.userData.profilePictureLink,
-        _kUserId: _credentials.userData.userId,
+        _kProfilePicture: credentials.userData.profilePictureLink,
+        _kUserId: credentials.userData.userId,
       });
 
       _log.v('user data added to firestore successfully');
 
-      _credentials.reset();
+      credentials.reset();
     } on SocketException {
       BethUtils.handleSocketException(_log);
     } catch (e) {
@@ -224,14 +225,11 @@ class RemoteDbController {
       };
 
       /// TODO add the reaction the post at the owner's record
-      /// TODO restrict users from adding multiple reactions
 
       await _firestore.collection(_kPosts).doc(postId).update({
         _kLikes: FieldValue.arrayUnion([likeInfo])
       });
       _log.v('added reaction to the post at the posts collection successfully');
-
-     
     } on SocketException {
       BethUtils.handleSocketException(_log);
     } catch (e) {

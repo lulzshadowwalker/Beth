@@ -3,23 +3,30 @@ part of './components/beth_scaffold_components.dart';
 class BethScaffold extends StatelessWidget {
   const BethScaffold({
     required Widget body,
-    Widget? bottomNavbigationBar,
+    Widget? bottomNavigationBar,
+    Widget? persistentFooterButtons,
     List<Widget>? actions,
     String? title,
     bool resizeToAvoidBottomInset = false,
+    Color? backgroundColor,
     Key? key,
   })  : _body = body,
-        _bottomNavigationBar = bottomNavbigationBar,
+        _bottomNavigationBar = bottomNavigationBar,
+        _persistentFooterButtons = persistentFooterButtons,
         _actions = actions,
         _title = title,
         _resizeToAvoidBottomInset = resizeToAvoidBottomInset,
+        _backgroundColor = backgroundColor,
         super(key: key);
 
   final Widget _body;
   final Widget? _bottomNavigationBar;
+  final Widget? _persistentFooterButtons;
   final List<Widget>? _actions;
   final String? _title;
   final bool _resizeToAvoidBottomInset;
+  final Color? _backgroundColor;
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
@@ -36,6 +43,7 @@ class BethScaffold extends StatelessWidget {
           child: Scaffold(
             extendBody: true,
             resizeToAvoidBottomInset: _resizeToAvoidBottomInset,
+            backgroundColor: _backgroundColor,
             appBar: _BethAppBar(
               actions: _actions,
               leading: _.icon,
@@ -50,6 +58,18 @@ class BethScaffold extends StatelessWidget {
               ],
             ),
             bottomNavigationBar: _bottomNavigationBar,
+            persistentFooterButtons: _persistentFooterButtons != null
+                ? [
+                    BottomNavBarConstrainedBox(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 45.0
+                        ),
+                        child: _persistentFooterButtons,
+                      ),
+                    )
+                  ]
+                : null,
           ),
         ),
       ),

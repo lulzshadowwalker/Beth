@@ -26,7 +26,9 @@ class BethElevatedButton extends StatelessWidget {
   final String _text;
   final bool _borderless;
   final Widget? _leading;
+  static const double _borderRadius = 50;
 
+  static double get borderRadius => _borderRadius;
   @override
   Widget build(BuildContext context) {
     return GetX(
@@ -41,7 +43,7 @@ class BethElevatedButton extends StatelessWidget {
               color: _color ?? BethColors.accent2,
               border: Border.fromBorderSide(
                   _borderless ? BorderSide.none : const BorderSide(width: 1)),
-              borderRadius: BorderRadius.circular(50),
+              borderRadius: BorderRadius.circular(_borderRadius),
             ),
             child: _.isLoading
                 ? const BethLoadingIndicator(color: BethColors.black)

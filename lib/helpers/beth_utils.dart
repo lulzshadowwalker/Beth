@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
+import 'package:map_launcher/map_launcher.dart';
 import 'package:motion_toast/motion_toast.dart';
 
 import '../locale/beth_translations.dart';
@@ -33,7 +34,7 @@ class BethUtils {
   }) {
     const bool enableAnimation = false;
 
-    final Map<AlertType, String> title = {
+    final Map<AlertType, String> alertTypeTitle = {
       AlertType.error: BethTranslations.error.tr,
       AlertType.warning: BethTranslations.warning.tr,
       AlertType.success: BethTranslations.success.tr,
@@ -45,7 +46,7 @@ class BethUtils {
     switch (alertType) {
       case AlertType.error:
         MotionToast.error(
-          title: Text(title[alertType]!,
+          title: Text(title ?? alertTypeTitle[alertType]!,
               style: textStyle?.copyWith(fontWeight: FontWeight.bold)),
           description: Text(
             message,
@@ -57,7 +58,7 @@ class BethUtils {
         break;
       case AlertType.success:
         MotionToast.success(
-          title: Text(title[alertType]!,
+          title: Text(title ?? alertTypeTitle[alertType]!,
               style: textStyle?.copyWith(fontWeight: FontWeight.bold)),
           description: Text(
             message,
@@ -69,7 +70,7 @@ class BethUtils {
         break;
       case AlertType.warning:
         MotionToast.warning(
-          title: Text(title[alertType]!,
+          title: Text(title ?? alertTypeTitle[alertType]!,
               style: textStyle?.copyWith(fontWeight: FontWeight.bold)),
           description: Text(
             message,
@@ -81,7 +82,7 @@ class BethUtils {
         break;
       case AlertType.info:
         MotionToast.info(
-          title: Text(title[alertType]!,
+          title: Text(title ?? alertTypeTitle[alertType]!,
               style: textStyle?.copyWith(fontWeight: FontWeight.bold)),
           description: Text(
             message,
@@ -93,7 +94,7 @@ class BethUtils {
         break;
       case AlertType.delete:
         MotionToast.delete(
-          title: Text(title[alertType]!,
+          title: Text(title ?? alertTypeTitle[alertType]!,
               style: textStyle?.copyWith(fontWeight: FontWeight.bold)),
           description: Text(
             message,
@@ -172,4 +173,23 @@ class BethUtils {
       ///  As far as I can tell, [Get.width] returns the relative width of the
       ///  screen depending on the orientation when launching the aplication.
       min(Get.width.toInt(), Get.height.toInt());
+
+  /// returns [true] if the direction of the text is left-to-right and [false] otherwise
+  static bool get isLtr => Directionality.of(Get.context!) == TextDirection.ltr;
+
+  /// returns [true] if the theme is dark and [false] if the theme is light
+  static bool get isDarkTheme => Get.theme.brightness == Brightness.dark;
+
+  static void launchMap({
+    required double latitude,
+    required double longitude,
+    required String title,
+  }) async {
+    final availableMaps = await MapLauncher.installedMaps;
+
+    await availableMaps.first.showMarker(
+      coords: Coords(latitude, longitude),
+      title: title,
+    );
+  }
 }

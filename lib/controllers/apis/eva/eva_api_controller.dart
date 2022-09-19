@@ -13,10 +13,14 @@ class EvaApiController {
   final _log = BethUtils.getLogger(_kClassName);
 
   /// verifies email authenticity
+  /// ..
+  /// returns [true] if the email is found to be not spam and undisposable as 
+  /// well as in-case of an api-side failure
   Future<bool> verifyEmail(String email) async {
     try {
       final uri = Uri.parse('$_kBaseUrl+$email');
 
+      _log.v('requesting from endpoint: $uri');
       final response = await http.get(uri);
 
       if (response.statusCode != 200) {
@@ -26,11 +30,13 @@ class EvaApiController {
       final json = convert.jsonDecode(response.body);
       final data = Eva.fromJson(json).data;
 
-      if (!data!.disposable! && !data.spam! && data.deliverable!) {
+
+      if (!data!.disposable! && !data.spam!) {
         _log.v('authentic email');
         return true;
       } else {
-        _log.v('unauthentic email');
+        _log.e('unauthentic email');
+        _log.e(data.toString());
         return false;
       }
     } catch (e) {

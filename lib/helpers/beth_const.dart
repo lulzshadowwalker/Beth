@@ -7,6 +7,7 @@ class BethConst {
   /* GET STORAGE -------------------------------------------------------------- */
   static const String themeMode = 'themeMode';
   static const String languageCode = 'language';
+  static const String isFirstLaunch = 'isFirstLaunch';
   /* -------------------------------------------------------------------------- */
 
   static const String light = 'light';
