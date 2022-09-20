@@ -1,5 +1,6 @@
 import 'package:beth/controllers/credentials/credentials_controller.dart';
 import 'package:beth/controllers/form/form_controller.dart';
+import 'package:beth/helpers/beth_utils.dart';
 import 'package:beth/views/auth/password_reset/components/password_reset_components.dart';
 import 'package:beth/views/auth/sign_up/components/sign_up_components.dart';
 import 'package:beth/views/shared/beth_animated_header/beth_animated_header.dart';

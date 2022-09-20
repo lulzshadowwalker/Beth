@@ -59,7 +59,7 @@ class _DetailedView extends StatelessWidget {
                     _entryContent.links?.length ?? 0,
                     (index) {
                       Link linkData = _entryContent.links![index];
-                      return LinkCard(
+                      return _LinkCard(
                         text: linkData.linkName!,
                         link: linkData.url!,
                       );

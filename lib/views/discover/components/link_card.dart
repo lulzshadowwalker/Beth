@@ -1,7 +1,7 @@
 part of './discover_components.dart';
 
-class LinkCard extends StatelessWidget {
-  const LinkCard({
+class _LinkCard extends StatelessWidget {
+  const _LinkCard({
     required String text,
     required String link,
     Key? key,
@@ -20,7 +20,7 @@ class LinkCard extends StatelessWidget {
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Container(
           width: double.infinity,
-          color: BethColors.muted,
+          color: BethColors.secondary1,
           child: Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 18.0, vertical: 8.0),

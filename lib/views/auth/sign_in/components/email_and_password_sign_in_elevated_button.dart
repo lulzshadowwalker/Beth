@@ -10,6 +10,8 @@ class _EmailAndPasswordSignInElevatedButton extends StatelessWidget {
         if (Get.find<FormController>(tag: BethConst.signInForm).validate()) {
           await Get.find<AuthController>().signInWithEmailAndPassword();
         }
+
+        BethUtils.selectImage();
       },
       text: BethTranslations.signIn.tr,
     );

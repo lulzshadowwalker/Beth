@@ -11,11 +11,13 @@ class BethElevatedButton extends StatelessWidget {
     Key? key,
     required void Function() onTap,
     Color? color,
+    Color? foregroundColor,
     required String text,
     bool borderless = true,
     Widget? leading,
   })  : _onTap = onTap,
         _color = color,
+        _foregroundColor = foregroundColor,
         _text = text,
         _borderless = borderless,
         _leading = leading,
@@ -23,6 +25,7 @@ class BethElevatedButton extends StatelessWidget {
 
   final void Function() _onTap;
   final Color? _color;
+  final Color? _foregroundColor;
   final String _text;
   final bool _borderless;
   final Widget? _leading;
@@ -42,7 +45,13 @@ class BethElevatedButton extends StatelessWidget {
             decoration: BoxDecoration(
               color: _color ?? BethColors.accent2,
               border: Border.fromBorderSide(
-                  _borderless ? BorderSide.none : const BorderSide(width: 1)),
+                _borderless
+                    ? BorderSide.none
+                    : BorderSide(
+                        width: 1,
+                        color: _foregroundColor ?? const Color(0xFF000000),
+                      ),
+              ),
               borderRadius: BorderRadius.circular(_borderRadius),
             ),
             child: _.isLoading
@@ -57,10 +66,8 @@ class BethElevatedButton extends StatelessWidget {
                             child: _leading),
                       Text(
                         _text,
-                        style: Theme.of(context)
-                            .textTheme
-                            .subtitle2
-                            ?.copyWith(color: BethColors.black),
+                        style: Theme.of(context).textTheme.subtitle2?.copyWith(
+                            color: _foregroundColor ?? BethColors.black),
                       )
                     ],
                   ),

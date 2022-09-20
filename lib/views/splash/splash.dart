@@ -41,12 +41,13 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: SvgPicture.asset(
-          BethImages.logo,
-          color: BethUtils.isDarkTheme
-              ? BethColors.lightPrimary1
-              : BethColors.black,
+      body: Container(
+        color: BethColors.secondary1Dimmed,
+        child: Center(
+          child: SvgPicture.asset(
+            BethImages.logo,
+            color: BethColors.secondary2,
+          ),
         ),
       ),
     );

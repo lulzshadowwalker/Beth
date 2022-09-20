@@ -58,6 +58,7 @@ dependencies:
   webview_flutter: ^3.0.4
   map_launcher: ^2.4.0
   flutter_image_slideshow: ^0.1.4
+  liquid_swipe: ^3.0.0
 
 dev_dependencies:
 

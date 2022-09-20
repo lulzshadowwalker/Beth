@@ -87,6 +87,15 @@ class BethTranslations extends Translations {
   static const String unauthenticEmail = 'unauthenticEmail';
   static const String bethWonders = 'bethWonders';
   static const String showOnMap = 'showOnMap';
+  static const String cancel = 'cancel';
+  static const String exploreBethWonders = 'exploreBethWonders';
+  static const String joinTheCommunity = 'joinTheCommunity';
+  static const String bethArbel = 'bethArbel';
+  static const String accessBookmarksAnywhere = 'cloudSyncedBookmarks';
+  static const String arabella = 'arabella';
+  static const String irbid = 'irbid';
+  static const String beautyAndCulture = 'beautyAndCulture';
+  static const String continueToBeth = 'continueToBeth';
   /* -------------------------------------------------------------------------- */
 
   /* [FirebaseAuthException] codes -------------------------------------------- */
@@ -188,6 +197,15 @@ class BethTranslations extends Translations {
           unauthenticEmail: 'please use an active email',
           bethWonders: 'the wonders of Beth-arbel',
           showOnMap: 'show on map',
+          cancel: 'cancel',
+          exploreBethWonders: 'explore the wonders of Beth-arbel',
+          joinTheCommunity: 'Be a part of the beth community',
+          bethArbel: 'Beth-arbel',
+          arabella: 'Arabella',
+          irbid: 'Irbid',
+          beautyAndCulture: 'ancient beauty and a modern captial of culture.',
+          accessBookmarksAnywhere: 'access your bookmarks from any device!',
+          continueToBeth: 'continue to Beth',
         },
         /* -------------------------------------------------------------------------- */
 
@@ -271,6 +289,15 @@ class BethTranslations extends Translations {
           unauthenticEmail: 'يرجى استخدام بريد الكتروني فعال',
           bethWonders: 'خبايا أرابيلا',
           showOnMap: 'أظهر على الخريطة',
+          cancel: 'إلغاء',
+          exploreBethWonders: 'استكشف خبايا أرابيلا',
+          joinTheCommunity: 'انضم إلى مجتمعنا',
+          bethArbel: 'بيث-أرابيل',
+          arabella: 'أرابيلا',
+          irbid: 'إربد',
+          beautyAndCulture: 'عريقة الجمال وعاصمة الثقافة المعاصرة',
+          accessBookmarksAnywhere: 'يمكنك الوصول إلى محفوظاتك عبر جميع الأجهزة',
+          continueToBeth: 'الاستمرار',
         },
         /* -------------------------------------------------------------------------- */
       };

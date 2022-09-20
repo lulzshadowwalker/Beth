@@ -2,14 +2,13 @@ part of './components/community_wall_components.dart';
 
 class CommunityWall extends StatefulWidget {
   const CommunityWall({Key? key}) : super(key: key);
-  static const String tag = 'bookmarks';
+  static const String tag = 'CommunityWall';
 
   @override
   State<CommunityWall> createState() => _CommunityWallState();
 }
 
-class _CommunityWallState extends State<CommunityWall>
-    with TickerProviderStateMixin {
+class _CommunityWallState extends State<CommunityWall> {
   @override
   void initState() {
     super.initState();
@@ -18,8 +17,6 @@ class _CommunityWallState extends State<CommunityWall>
 
   @override
   Widget build(BuildContext context) {
-    final tabController = TabController(length: 2, vsync: this);
-
     return Scaffold(
       floatingActionButton: const _AddPostFloatingButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -29,21 +26,7 @@ class _CommunityWallState extends State<CommunityWall>
           children: [
             BethAnimatedHeader(text: BethTranslations.communityWall.tr),
             const SizedBox(height: 100),
-
-            /// tabbar
-            BethTabBar(
-              tabController: tabController,
-              padding: const EdgeInsets.only(bottom: 30),
-              tabs: [
-                Text(BethTranslations.popular.tr),
-                Text(BethTranslations.feed.tr),
-              ],
-            ),
-            Expanded(
-              child: TabBarView(
-                  controller: tabController,
-                  children: const [_PopularPosts(), _Feed()]),
-            )
+            const Expanded(child: _Feed())
           ],
         ),
       ),
