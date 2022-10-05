@@ -1,6 +1,7 @@
 import 'package:beth/themes/beth_colors.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:get/get.dart';
 
 import '../../../controllers/current_user/current_user_controller.dart';
@@ -18,7 +19,7 @@ class UserAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetX(
         init: CurrentUserController(),
-        builder: (CurrentUserController _) => InkWell(
+        builder: (CurrentUserController _) => Bounceable(
               child: Container(
                 width: _radius ?? 40,
                 height: _radius ?? 40,

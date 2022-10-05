@@ -16,7 +16,7 @@ class LaunchMapButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomNavBarConstrainedBox(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 45.0),
+        padding: const EdgeInsets.symmetric(horizontal: 45.0, vertical: 65),
         child: PhysicalModel(
           color: Colors.transparent,
           elevation: BethUtils.isDarkTheme ? 0 : 8,
@@ -24,6 +24,7 @@ class LaunchMapButton extends StatelessWidget {
           child: BethElevatedButton(
             borderless: false,
             onTap: _launchMaps,
+            leading: const FaIcon(FontAwesomeIcons.mapLocationDot),
             text: BethTranslations.showOnMap.tr,
           ),
         ),

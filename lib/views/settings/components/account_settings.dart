@@ -43,8 +43,8 @@ class _AccountSettingsState extends State<_AccountSettings> {
   }
 
   void _onTapName() async {
-    Get.to(
-      () => SingleField(
+    Get.bottomSheet(
+      SingleField(
         title: BethTranslations.enterYourNewName.tr,
         buttonText: BethTranslations.applyChanges.tr,
         onTap: () async {
@@ -58,8 +58,8 @@ class _AccountSettingsState extends State<_AccountSettings> {
   }
 
   void _onTapEmail() async {
-    Get.to(
-      () => SingleField(
+    Get.bottomSheet(
+      SingleField(
         title: BethTranslations.enterYourNewEmailAddress.tr,
         buttonText: BethTranslations.applyChanges.tr,
         onTap: () async {
@@ -75,8 +75,8 @@ class _AccountSettingsState extends State<_AccountSettings> {
   }
 
   void _onTapProfilePicture() {
-    Get.to(
-      () => GetX(
+    Get.bottomSheet(
+      GetX(
         builder: (CurrentUserController _) => ChooseAvatar(
           nameText: _.data.name ?? BethConst.nameFallBack,
           buttonText: BethTranslations.applyChanges.tr,

@@ -6,8 +6,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../beth_tile/beth_tile.dart';
-
 class BethImageSourceBottomSheet extends StatelessWidget {
   const BethImageSourceBottomSheet({
     required Function(ImageSource) onItemSelected,

@@ -1,3 +1,4 @@
+import 'package:beth/controllers/database/remote/remote_db_controller.dart';
 import 'package:flutter/material.dart';
 
 import '../../controllers/active_tag/active_tag_controller.dart';
@@ -19,10 +20,13 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Home'),
-      ),
-    );
+    return Scaffold(
+        body: Center(
+      child: TextButton(
+          onPressed: () async {
+            await RemoteDbController().fetchDiscover;
+          },
+          child: const Text('fetch')),
+    ));
   }
 }

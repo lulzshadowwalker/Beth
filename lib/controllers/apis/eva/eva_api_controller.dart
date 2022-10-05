@@ -14,13 +14,13 @@ class EvaApiController {
 
   /// verifies email authenticity
   /// ..
-  /// returns [true] if the email is found to be not spam and undisposable as 
+  /// returns [true] if the email is found to be not spam and undisposable as
   /// well as in-case of an api-side failure
   Future<bool> verifyEmail(String email) async {
     try {
       final uri = Uri.parse('$_kBaseUrl+$email');
 
-      _log.v('requesting from endpoint: $uri');
+      _log.v('📤 requesting from endpoint: $uri');
       final response = await http.get(uri);
 
       if (response.statusCode != 200) {
@@ -30,17 +30,16 @@ class EvaApiController {
       final json = convert.jsonDecode(response.body);
       final data = Eva.fromJson(json).data;
 
-
       if (!data!.disposable! && !data.spam!) {
-        _log.v('authentic email');
+        _log.v('✅ authentic email');
         return true;
       } else {
-        _log.e('unauthentic email');
-        _log.e(data.toString());
+        _log.e('❌ unauthentic email');
+        _log.e('❌ ${data.toString()}');
         return false;
       }
     } catch (e) {
-      _log.v(e.toString());
+      _log.v('❌ ${e.toString()}');
       // i don't want the user to get stuck on the sign in screen if anything
       //  goes wrong with the api
       return true;

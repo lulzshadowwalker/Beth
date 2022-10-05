@@ -124,7 +124,7 @@ class BethUtils {
   }
 
   static void handleUnkownError(Object e, Logger logger) {
-    logger.e(e.toString());
+    logger.e('❌ ${e.toString()}');
 
     BethUtils.showSnackBar(
       message: BethTranslations.unkownError.tr,
@@ -158,7 +158,7 @@ class BethUtils {
 
       return image.readAsBytes();
     } catch (e) {
-      _log.e(e.toString());
+      _log.e('❌ ${e.toString()}');
       return null;
     }
   }

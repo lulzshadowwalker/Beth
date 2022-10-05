@@ -15,19 +15,20 @@ class _SettingsState extends State<Settings> {
     ActiveTagController.tag = Settings.tag;
   }
 
-
   @override
   Widget build(BuildContext context) {
     return BethScaffold(
       title: BethTranslations.settings.tr,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 30),
-        child: BethConstrainedBox(
-          child: Center(
-            child: Column(children: [
-              const _UserTile(),
-              ..._sections,
-            ]),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 30),
+          child: BethConstrainedBox(
+            child: Center(
+              child: Column(children: [
+                const _UserTile(),
+                ..._sections,
+              ]),
+            ),
           ),
         ),
       ),

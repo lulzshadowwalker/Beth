@@ -48,7 +48,7 @@ class _LandingPage extends StatelessWidget {
               child: BethElevatedButton(
                 onTap: () {
                   GetStorage().write(BethConst.isFirstLaunch, false);
-                  Get.put(AuthController());
+                  Get.put(AuthController(), permanent: true);
                 },
                 color: BethColors.accent1,
                 text: BethTranslations.continueToBeth.tr,

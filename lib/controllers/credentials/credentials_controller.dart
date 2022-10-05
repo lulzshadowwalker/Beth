@@ -10,19 +10,19 @@ class CredentialsController {
   }
 
   /* NAVIGATION --------------------------------------------------------------- */
-  void getTo(Widget page) {
+  void getTo(Widget page, {Bindings? binding}) {
     reset();
-    Get.to(page);
+    Get.to(page, binding: binding);
   }
 
-  void getOffAll(Widget page) {
+  void getOffAll(Widget page, {Bindings? binding}) {
     reset();
-    Get.offAll(page);
+    Get.offAll(page, binding: binding);
   }
 
-  void getOff(Widget page) {
+  void getOff(Widget page, {Bindings? binding}) {
     reset();
-    Get.off(page);
+    Get.off(page, binding: binding);
   }
 
   void back() {

@@ -1,4 +1,3 @@
-import 'package:beth/controllers/credentials/credentials_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -6,7 +5,6 @@ import 'package:get/get.dart';
 import '../../../controllers/auth/auth_controller.dart';
 import '../../../locale/beth_translations.dart';
 import '../../../themes/beth_colors.dart';
-import '../../beth_home/components/beth_home_components.dart';
 import '../beth_elevated_button/beth_elevatedbutton.dart';
 
 class GoogleAuthElevatedButton extends StatelessWidget {
@@ -34,8 +32,5 @@ class GoogleAuthElevatedButton extends StatelessWidget {
     );
   }
 
-  void _onTap() async {
-    await Get.find<AuthController>().googleAuth();
-    Get.find<CredentialsController>().getOffAll(const BethHome());
-  }
+  void _onTap() async => await Get.find<AuthController>().googleAuth();
 }

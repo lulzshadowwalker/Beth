@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:beth/helpers/beth_const.dart';
 import 'package:beth/helpers/beth_images.dart';
-import 'package:beth/helpers/beth_utils.dart';
 import 'package:beth/themes/beth_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

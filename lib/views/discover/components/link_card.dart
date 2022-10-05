@@ -45,6 +45,7 @@ class _LinkCard extends StatelessWidget {
   }
 
   void _launchUrl() {
+    BethUtils.getLogger('LinkCard').v('📤 launching webview with url: $_link');
     Get.to(BethWebView(link: _link));
   }
 }

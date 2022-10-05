@@ -6,10 +6,11 @@ class SignUpAddPfp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChooseAvatar(
-        nameText: Get.find<CredentialsController>().userData.name ??
-            BethConst.nameFallBack,
-        buttonText: BethTranslations.signUp.tr,
-        onPressed: _onPressed);
+      nameText: Get.find<CredentialsController>().userData.name ??
+          BethConst.nameFallBack,
+      buttonText: BethTranslations.signUp.tr,
+      onPressed: _onPressed,
+    );
   }
 
   void _onPressed(Uint8List? file) async {

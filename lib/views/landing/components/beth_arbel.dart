@@ -27,8 +27,10 @@ class _BethArbel extends StatelessWidget {
                     BethTranslations.bethArbel.tr,
                     textStyle: _textStyle,
                   ),
-                  RotateAnimatedText(BethTranslations.arabella.tr,
-                      textStyle: _textStyle),
+                  RotateAnimatedText(
+                    BethTranslations.arabella.tr,
+                    textStyle: _textStyle,
+                  ),
                   RotateAnimatedText(
                     BethTranslations.irbid.tr,
                     textStyle: _textStyle,

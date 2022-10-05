@@ -72,7 +72,8 @@ class _SignInState extends State<SignIn> {
   }
 
   void _dontHaveAnAccount() {
-    Get.find<CredentialsController>().getOff(const SignUp());
+    Get.find<CredentialsController>()
+        .getOff(const SignUp(), binding: AuthBinding());
   }
 
   void _onSaved(String? value) {

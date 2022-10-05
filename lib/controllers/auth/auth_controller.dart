@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:beth/controllers/auth/bindings/auth_binding.dart';
 import 'package:beth/controllers/credentials/credentials_controller.dart';
 import 'package:beth/controllers/database/remote/remote_db_controller.dart';
 import 'package:beth/helpers/beth_utils.dart';
@@ -51,7 +52,7 @@ class AuthController extends GetxController {
   ///  function callback in the [ever] worker or event
   _setScreen(User? currentUser) {
     currentUser == null
-        ? Get.offAll(const SignIn())
+        ? Get.offAll(const SignIn(), binding: AuthBinding())
         : {
             Get.put(() => CurrentUserController(), permanent: true),
             Get.offAll(const BethHome())
@@ -62,7 +63,7 @@ class AuthController extends GetxController {
   Future<void> guestSignIn() async {
     try {
       await _auth.signInAnonymously();
-      _log.v('Signed-in anonymously');
+      _log.v('✅ Signed-in anonymously');
     } on SocketException {
       BethUtils.handleSocketException(_log);
     } catch (e) {
@@ -77,7 +78,7 @@ class AuthController extends GetxController {
       await _auth.signInWithEmailAndPassword(
           email: _credentials.userData.email,
           password: _credentials.userData.password);
-      _log.v('Signed-in with email and password');
+      _log.v('✅ Signed-in with email and password');
     } on SocketException {
       BethUtils.handleSocketException(_log);
     } on FirebaseAuthException catch (e) {
@@ -98,7 +99,7 @@ class AuthController extends GetxController {
       _credentials.userData.userId = uid;
       await _remoteDb.registerUser();
 
-      _log.v('Signed-up with email and password');
+      _log.v('✅ Signed-up with email and password');
     } on SocketException {
       BethUtils.handleSocketException(_log);
     } on FirebaseAuthException catch (e) {
@@ -111,7 +112,7 @@ class AuthController extends GetxController {
   Future<void> signOut() async {
     try {
       await _auth.signOut();
-      _log.v('Signed-out');
+      _log.v('✅ Signed-out');
     } on SocketException {
       BethUtils.handleSocketException(_log);
     } catch (e) {
@@ -124,7 +125,7 @@ class AuthController extends GetxController {
       await _user!.updateEmail(email);
 
       await _remoteDb.updateUserEmail(email);
-      _log.v('updated user\'s email successfully');
+      _log.v('✅ updated user\'s email');
       BethUtils.showSnackBar(
         message: BethTranslations.emailUpdatedSuccessfully.tr,
         alertType: AlertType.success,
@@ -143,7 +144,7 @@ class AuthController extends GetxController {
     try {
       await _auth.sendPasswordResetEmail(email: _credentials.userData.email);
 
-      _log.v(BethTranslations.passwordResetEmail);
+      _log.v('✅ ${BethTranslations.passwordResetEmail}');
       BethUtils.showSnackBar(
         message: BethTranslations.passwordResetEmail.tr,
         alertType: AlertType.success,
@@ -166,13 +167,15 @@ class AuthController extends GetxController {
 
       final googleUser = await googleSignIn.signIn();
       if (googleUser == null) {
-        throw Exception('Process terminated by the user');
+        /// not throwing an exception not to show the user an unnecessary error message
+        _log.e('❌ Process terminated by the user');
+        return;
       }
 
-      _log.v('Google auth process initiated');
+      _log.v('📤 Google auth process initiated');
 
       final googleAuth = await googleUser.authentication;
-      _log.v('Obtained user details via Google auth');
+      _log.v('✅ Obtained user details via Google auth');
 
       final ouathCredential = GoogleAuthProvider.credential(
         idToken: googleAuth.idToken,
@@ -180,7 +183,7 @@ class AuthController extends GetxController {
       );
 
       final userCredential = await _auth.signInWithCredential(ouathCredential);
-      _log.v('Signed-in with Google auth successfully');
+      _log.v('✅ Signed-in with Google auth');
 
       _credentials.userData = BethUserCredential.fromOAuth(
         userCredential.additionalUserInfo!.profile!,
@@ -204,7 +207,7 @@ class AuthController extends GetxController {
 
   /* HELPERS ------------------------------------------------------------------ */
   void _handleFirebaseAuthException(FirebaseAuthException e) {
-    _log.e(e.message);
+    _log.e('❌ ${e.message}');
 
     BethUtils.showSnackBar(
       message: e.code.tr,

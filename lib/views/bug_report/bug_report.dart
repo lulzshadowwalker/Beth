@@ -13,59 +13,65 @@ class _BugReportState extends State<BugReport> {
   Widget build(BuildContext context) {
     return BethScaffold(
       title: BethTranslations.bugReport.tr,
-      body: BethConstrainedBox(
-        child: Padding(
-          padding: const EdgeInsets.all(45.0),
-          child: Form(
-            key: _formController.formKey,
-            child: Column(
-              children: [
-                /// header
-                BethAnimatedHeader(
-                  text: BethTranslations.submitABug.tr,
-                ),
+      body: SingleChildScrollView(
+        child: BethConstrainedBox(
+          child: Padding(
+            padding: const EdgeInsets.all(45.0),
+            child: Form(
+              key: _formController.formKey,
+              child: Column(
+                children: [
+                  /// header
+                  BethAnimatedHeader(
+                    text: BethTranslations.submitABug.tr,
+                  ),
 
-                /// subject
-                BethTextFormField(
-                  hintText: BethTranslations.subject.tr,
-                  validator: _subjectValidator,
-                  controller: _subjectController,
-                ),
+                  /// subject
+                  BethTextFormField(
+                    hintText: BethTranslations.subject.tr,
+                    validator: _subjectValidator,
+                    controller: _subjectController,
+                  ),
 
-                /// description
-                BethTextFormField(
-                  contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
-                  maxLines: 10,
-                  hintText: BethTranslations.descriptionOptional.tr,
-                  labelText: BethTranslations.description.tr,
-                  controller: _descriptionController,
-                ),
-                const SizedBox(height: 50),
+                  /// description
+                  BethTextFormField(
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 25, vertical: 25),
+                    maxLines: 10,
+                    hintText: BethTranslations.descriptionOptional.tr,
+                    labelText: BethTranslations.description.tr,
+                    controller: _descriptionController,
+                  ),
+                  const SizedBox(height: 50),
 
-                Row(
-                  children: [
-                    /// image button
-                    Expanded(
-                      child: BethElevatedButton(
-                        onTap: _pickImage,
-                        text: BethTranslations.attachScreenshot.tr,
+                  Row(
+                    children: [
+                      /// image button
+                      Expanded(
+                        child: BethElevatedButton(
+                          onTap: _pickImage,
+                          text: BethTranslations.attachScreenshot.tr,
+                        ),
                       ),
-                    ),
 
-                    const SizedBox(width: 10),
+                      const SizedBox(width: 10),
 
-                    /// image preview
-                    const _ImagePreview()
-                  ],
-                )
-              ],
+                      /// image preview
+                      const _ImagePreview()
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),
       ),
-      persistentFooterButtons:
-          BethElevatedButton(onTap: _submit, text: BethTranslations.submit.tr),
+      bottomNavigationBar: BottomNavBarConstrainedBox(
+        child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 45.0, vertical: 65),
+            child: BethElevatedButton(
+                onTap: _submit, text: BethTranslations.submit.tr)),
+      ),
     );
   }
 
@@ -96,29 +102,28 @@ class _BugReportState extends State<BugReport> {
       _imageController.setImage = await BethUtils.selectImage();
 
   Future<void> _submit() async {
-    await BethapiController().fetchData();
-    // if (_formController.validate()) {
-    //   final image = _imageController.getImage;
-    //   if (image == null) {
-    //     BethUtils.showSnackBar(
-    //       message: BethTranslations.noImageSelected.tr,
-    //       alertType: AlertType.error,
-    //     );
-    //     return;
-    //   }
+    if (_formController.validate()) {
+      final image = _imageController.getImage;
+      if (image == null) {
+        BethUtils.showSnackBar(
+          message: BethTranslations.noImageSelected.tr,
+          alertType: AlertType.error,
+        );
+        return;
+      }
 
-    //   final attachmentUrl = await RemoteStorageController()
-    //       .upload(file: image, childName: 'bugReports');
+      final attachmentUrl = await RemoteStorageController()
+          .upload(file: image, childName: 'bugReports');
 
-    //   await RemoteDbController().bugReport(
-    //     subject: _subjectController.text.trim(),
-    //     description: _descriptionController.text.trim(),
-    //     attachment: attachmentUrl!,
-    //   );
+      await RemoteDbController().bugReport(
+        subject: _subjectController.text.trim(),
+        description: _descriptionController.text.trim(),
+        attachment: attachmentUrl!,
+      );
 
-    //   _subjectController.clear();
-    //   _descriptionController.clear();
-    //   _imageController.clear();
-    // }
+      _subjectController.clear();
+      _descriptionController.clear();
+      _imageController.clear();
+    }
   }
 }

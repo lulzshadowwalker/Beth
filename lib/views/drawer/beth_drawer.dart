@@ -4,8 +4,7 @@ class BethDrawer extends StatelessWidget {
   const BethDrawer({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: BethColors.secondary1Dimmed,
+    return Padding(
       padding: const EdgeInsets.only(left: 30.0),
       child: Center(
         child: Column(children: [

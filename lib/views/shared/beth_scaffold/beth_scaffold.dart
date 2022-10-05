@@ -39,7 +39,7 @@ class BethScaffold extends StatelessWidget {
           menu: const BethDrawer(),
           type: SideMenuType.slideNRotate,
           closeIcon: null,
-          background: BethColors.secondary1,
+          background: BethColors.secondary1Dimmed,
           child: Scaffold(
             extendBody: true,
             resizeToAvoidBottomInset: _resizeToAvoidBottomInset,
@@ -53,7 +53,9 @@ class BethScaffold extends StatelessWidget {
               children: [
                 Expanded(
                   child: Directionality(
-                      textDirection: Directionality.of(context), child: _body),
+                    textDirection: Directionality.of(context),
+                    child: _body,
+                  ),
                 ),
               ],
             ),
@@ -62,9 +64,7 @@ class BethScaffold extends StatelessWidget {
                 ? [
                     BottomNavBarConstrainedBox(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 45.0
-                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 45.0),
                         child: _persistentFooterButtons,
                       ),
                     )

@@ -14,14 +14,12 @@ class _DetailedView extends StatelessWidget {
     return Scaffold(
       extendBody: true,
       extendBodyBehindAppBar: true,
-      persistentFooterButtons: _entryContent.links != null
-          ? [
-              LaunchMapButton(
-                location: _entryContent.geoLocation!,
-                locationTitle:
-                    _entryContent.title ?? BethTranslations.discover.tr,
-              )
-            ]
+      bottomNavigationBar: _entryContent.links != null
+          ? LaunchMapButton(
+              location: _entryContent.geoLocation!,
+              locationTitle:
+                  _entryContent.title ?? BethTranslations.discover.tr,
+            )
           : null,
       appBar: AppBar(),
       body: SingleChildScrollView(
@@ -58,7 +56,7 @@ class _DetailedView extends StatelessWidget {
                   ...List.generate(
                     _entryContent.links?.length ?? 0,
                     (index) {
-                      Link linkData = _entryContent.links![index];
+                      BethLink linkData = _entryContent.links![index];
                       return _LinkCard(
                         text: linkData.linkName!,
                         link: linkData.url!,

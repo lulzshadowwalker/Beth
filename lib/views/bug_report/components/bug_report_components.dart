@@ -1,4 +1,3 @@
-import 'package:beth/controllers/apis/beth/bethapi_controller.dart';
 import 'package:beth/controllers/form/form_controller.dart';
 import 'package:beth/helpers/beth_utils.dart';
 import 'package:beth/locale/beth_translations.dart';
@@ -7,12 +6,16 @@ import 'package:beth/views/shared/beth_animated_header/beth_animated_header.dart
 import 'package:beth/views/shared/beth_constrained_box/beth_constrained_box.dart';
 import 'package:beth/views/shared/beth_elevated_button/beth_elevatedbutton.dart';
 import 'package:beth/views/shared/beth_text_form_field/beth_textformfield.dart';
+import 'package:beth/views/shared/bottom_nav_bar_constrained_box/bottom_nav_bar_constrained_box.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import '../../../controllers/active_tag/active_tag_controller.dart';
+import '../../../controllers/database/remote/remote_db_controller.dart';
 import '../../../controllers/image/image_controller.dart';
+import '../../../controllers/storage/remote_storage/remote_storage_controller.dart';
+import '../../../models/alert_type.dart';
 import '../../shared/beth_scaffold/components/beth_scaffold_components.dart';
 
 part '../bug_report.dart';

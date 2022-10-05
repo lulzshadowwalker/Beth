@@ -1,3 +1,4 @@
+import 'package:beth/controllers/auth/bindings/auth_binding.dart';
 import 'package:beth/controllers/credentials/credentials_controller.dart';
 import 'package:beth/controllers/form/form_controller.dart';
 import 'package:beth/helpers/beth_const.dart';

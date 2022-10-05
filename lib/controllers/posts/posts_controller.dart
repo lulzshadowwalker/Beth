@@ -11,6 +11,6 @@ class PostsController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _posts.bindStream(RemoteDbController().posts);
+    _posts.bindStream(RemoteDbController().fetchPosts);
   }
 }

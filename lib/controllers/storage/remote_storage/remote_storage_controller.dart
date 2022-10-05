@@ -32,7 +32,7 @@ class RemoteStorageController {
 
       final String downloadUrl = await snapshot.ref.getDownloadURL();
 
-      _log.v('file uploaded successfully');
+      _log.v('✅ file uploaded successfully');
 
       return downloadUrl;
     } on SocketException {
