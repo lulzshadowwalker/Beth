@@ -17,28 +17,59 @@ class Post extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String? reactionPreview = _reactionPreview();
+
     return Bounceable(
       onTap: () {},
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15),
         child: (_data?.imageUrl ?? '').isNotEmpty
-            ? GetBuilder(
-                init: ScaleController(),
-                tag: const Uuid().v4(),
-                builder: (ScaleController scaleController) => GetBuilder(
-                  tag: _controllerTag,
-                  builder: (ReactionsController reactionController) =>
-                      BethAnimatedScale(
-                    scale: scaleController.scale,
-                    index: _index,
-                    child: ReactionContainer(
-                      boxColor: BethColors.primary.withOpacity(0.5),
-                      onReactionChanged: _onReactionChanged,
-                      reactions: ReactionsController().reactions,
-                      child: CachedNetworkImage(imageUrl: _data!.imageUrl!),
+            ? Stack(
+                children: [
+                  GetBuilder(
+                    init: ScaleController(),
+                    tag: const Uuid().v4(),
+                    builder: (ScaleController scaleController) => GetBuilder(
+                      tag: _controllerTag,
+                      builder: (ReactionsController reactionController) =>
+                          BethAnimatedScale(
+                        scale: scaleController.scale,
+                        index: _index,
+                        child: ReactionContainer(
+                          boxColor: BethColors.primary.withOpacity(0.5),
+                          onReactionChanged: _onReactionChanged,
+                          reactions: ReactionsController().reactions,
+                          child: CachedNetworkImage(imageUrl: _data!.imageUrl!),
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                  PositionedDirectional(
+                    end: 5,
+                    bottom: 5,
+                    child: Container(
+                      height: 30,
+                      width: 30,
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(.35),
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(.3),
+                            offset: const Offset(0, 3),
+                            blurRadius: 3,
+                          )
+                        ],
+                      ),
+                      child: reactionPreview != null
+                          ? _reactionsController.reactions
+                              .firstWhere(
+                                  (value) => value.value == reactionPreview)
+                              .previewIcon
+                          : const SizedBox(),
+                    ),
+                  )
+                ],
               )
             : Container(
                 color: Colors.white,
@@ -51,18 +82,25 @@ class Post extends StatelessWidget {
     );
   }
 
+  String? _reactionPreview() {
+    final uid = Get.find<AuthController>().getUserId;
+
+    for (Map e in _data!.likes!) {
+      if (e['likedBy'] == uid) {
+        return e['reactionType'];
+      }
+    }
+    return null;
+  }
+
   void _onReactionChanged(String? value) async {
     _reactionsController.selectedReaction = value;
 
     if (value != null) {
-      final uid = Get.find<AuthController>().getUserId;
-
-      /// prevent the user from reacting to the same post more than once
-      for (Map e in _data!.likes!) {
-        if (e['likedBy'] == uid) return;
-      }
-
-      await RemoteDbController().likePost(_data!.postId!, value);
+      await RemoteDbController().reactToPost(
+        data: _data!,
+        reactionType: value,
+      );
     }
   }
 }

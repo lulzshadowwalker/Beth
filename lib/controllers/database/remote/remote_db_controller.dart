@@ -41,7 +41,6 @@ class RemoteDbController {
   static const String _kLikes = 'likes';
   static const String _kReactionType = 'reactionType';
   static const String _kLikedBy = 'likedBy';
-  static const String _kSectionName = 'section_name';
   /* -------------------------------------------------------------------------- */
 
   static String? get _uid => Get.find<AuthController>().getUserId;
@@ -191,7 +190,12 @@ class RemoteDbController {
         _kLikes: [],
       };
 
-      await _firestore.collection(_kUsers).doc(_uid).update({
+      await _firestore
+          .collection(_kUsers)
+          .doc(_uid)
+          .collection(_kPosts)
+          .doc(postId)
+          .set({
         _kPosts: FieldValue.arrayUnion([postInfo])
       });
       _log.v('✅ added post to the user\'s record');
@@ -219,20 +223,39 @@ class RemoteDbController {
         return postsList;
       });
 
-  Future<void> likePost(String postId, String reactionType) async {
+  Future<void> reactToPost({
+    required BethPost data,
+    required String reactionType,
+  }) async {
     try {
+      final uid = Get.find<AuthController>().getUserId;
+
+      /// prevent the user from reacting to the same post more than once
+      for (Map e in data.likes!) {
+        if (e['likedBy'] == uid) return;
+      }
+
       Map<String, Object?> likeInfo = {
         _kReactionType: reactionType,
         _kLikedBy: _uid,
         _kDateCreated: DateTime.now().toUtc(),
       };
 
-      /// TODO add the reaction the post at the owner's record
-
-      await _firestore.collection(_kPosts).doc(postId).update({
+      await _firestore.collection(_kPosts).doc(data.postId).update({
         _kLikes: FieldValue.arrayUnion([likeInfo])
       });
       _log.v('✅ added reaction to the post at the posts collection');
+
+      await _firestore
+          .collection(_kUsers)
+          .doc(data.postedBy)
+          .collection(_kPosts)
+          .doc(data.postId)
+          .update({
+        _kLikes: FieldValue.arrayUnion([likeInfo])
+      });
+      _log.v(
+          '✅ added reaction to the post at the post owner\'s posts sub-collection');
     } on SocketException {
       BethUtils.handleSocketException(_log);
     } catch (e) {

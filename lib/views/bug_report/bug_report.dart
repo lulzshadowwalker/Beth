@@ -78,7 +78,10 @@ class _BugReportState extends State<BugReport> {
   final _subjectController = TextEditingController();
   final _descriptionController = TextEditingController();
   final _formController = FormController();
-  final ImageController _imageController = Get.put(ImageController());
+  final _imageController =
+      Get.put(ImageController(), tag: _kPreviewImageControllerTag);
+  static const String _kPreviewImageControllerTag =
+      '_kPreviewImageControllerTag';
 
   @override
   void initState() {

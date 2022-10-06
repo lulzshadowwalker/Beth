@@ -22,7 +22,6 @@ class AuthController extends GetxController {
 
   static final FirebaseAuth _auth = FirebaseAuth.instance;
   final _remoteDb = RemoteDbController();
-  final _credentials = Get.put(CredentialsController());
 
   /* STRING CONSTANTS --------------------------------------------------------- */
   static const String _className = 'AuthController';
@@ -43,8 +42,6 @@ class AuthController extends GetxController {
 
     /// Show suitable screen depending on the auth status
     ever(_firebaseUser, _setScreen);
-
-    Get.put(CredentialsController());
   }
 
   /// auth/home screen depending on auth state
@@ -75,9 +72,11 @@ class AuthController extends GetxController {
   /* EMAIL AND PASSWORD ------------------------------------------------------- */
   Future<void> signInWithEmailAndPassword() async {
     try {
+      final credentials = Get.find<CredentialsController>();
+
       await _auth.signInWithEmailAndPassword(
-          email: _credentials.userData.email,
-          password: _credentials.userData.password);
+          email: credentials.userData.email,
+          password: credentials.userData.password);
       _log.v('✅ Signed-in with email and password');
     } on SocketException {
       BethUtils.handleSocketException(_log);
@@ -90,13 +89,15 @@ class AuthController extends GetxController {
 
   Future<void> signUpWithEmailAndPassword() async {
     try {
+      final credentials = Get.find<CredentialsController>();
+
       final userCredential = await _auth.createUserWithEmailAndPassword(
-        email: _credentials.userData.email,
-        password: _credentials.userData.password,
+        email: credentials.userData.email,
+        password: credentials.userData.password,
       );
 
       final String? uid = userCredential.user?.uid;
-      _credentials.userData.userId = uid;
+      credentials.userData.userId = uid;
       await _remoteDb.registerUser();
 
       _log.v('✅ Signed-up with email and password');
@@ -142,7 +143,9 @@ class AuthController extends GetxController {
 
   Future<void> sendPasswordResetEmail() async {
     try {
-      await _auth.sendPasswordResetEmail(email: _credentials.userData.email);
+      final credentials = Get.find<CredentialsController>();
+
+      await _auth.sendPasswordResetEmail(email: credentials.userData.email);
 
       _log.v('✅ ${BethTranslations.passwordResetEmail}');
       BethUtils.showSnackBar(
@@ -161,6 +164,8 @@ class AuthController extends GetxController {
   /* OUTH --------------------------------------------------------------------- */
   Future<void> googleAuth() async {
     try {
+      final credentials = Get.find<CredentialsController>();
+
       final googleSignIn = GoogleSignIn(scopes: [
         'profile',
       ]);
@@ -185,7 +190,7 @@ class AuthController extends GetxController {
       final userCredential = await _auth.signInWithCredential(ouathCredential);
       _log.v('✅ Signed-in with Google auth');
 
-      _credentials.userData = BethUserCredential.fromOAuth(
+      credentials.userData = BethUserCredential.fromOAuth(
         userCredential.additionalUserInfo!.profile!,
       );
 
@@ -200,7 +205,9 @@ class AuthController extends GetxController {
   }
 
   Future<void> appleAuth() async {
-    // TODO implement [appleAuth]. Needs an Apple developer account.
+    // TODO implement [appleAuth].
+    //  ..
+    //  requires an Apple developer account.
     throw UnimplementedError('Apple auth has not been implemnted');
   }
   /* -------------------------------------------------------------------------- */

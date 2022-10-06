@@ -8,6 +8,7 @@ class _ImagePreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
+      tag: _BugReportState._kPreviewImageControllerTag,
       builder: (ImageController _) => _.getImage == null
           ? FaIcon(
               FontAwesomeIcons.fileImage,

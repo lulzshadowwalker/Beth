@@ -10,6 +10,7 @@ import 'package:beth/views/shared/bottom_nav_bar_constrained_box/bottom_nav_bar_
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../controllers/active_tag/active_tag_controller.dart';
 import '../../../controllers/database/remote/remote_db_controller.dart';
