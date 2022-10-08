@@ -24,7 +24,7 @@ class _DetailedView extends StatelessWidget {
       appBar: AppBar(
         actions: [
           GetX(
-            builder: (CurrentUserController _) {
+            builder: (UserController _) {
               bool isBookmarked = _.bookmarks.firstWhereOrNull(
                           (e) => e.title == _entryContent.title) !=
                       null

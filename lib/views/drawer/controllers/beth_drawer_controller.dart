@@ -3,7 +3,7 @@ import 'package:beth/controllers/current_user/current_user_controller.dart';
 import 'package:beth/helpers/beth_const.dart';
 import 'package:beth/locale/beth_translations.dart';
 import 'package:beth/themes/beth_colors.dart';
-import 'package:beth/views/profile/profile.dart';
+import 'package:beth/views/home/components/home_components.dart';
 import 'package:beth/views/shared/beth_tile/beth_tile.dart';
 import 'package:beth/views/shared/user_avatar/user_avatar.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +15,7 @@ import '../../../controllers/auth/auth_controller.dart';
 import '../../beth_home/components/beth_home_components.dart';
 import '../../bug_report/components/bug_report_components.dart';
 import '../../discover/components/discover_components.dart';
+import '../../profile/components/profile_components.dart';
 import '../../settings/components/settings_components.dart';
 import '../components/beth_drawer_components.dart';
 
@@ -38,6 +39,16 @@ class BethDrawerController extends GetxController {
         iconSize: 26,
       );
 
+  Widget get lightIcon => IconButton(
+        onPressed: _toggle,
+        icon: FaIcon(
+          _closed ? FontAwesomeIcons.barsStaggered : FontAwesomeIcons.xmark,
+          color: BethColors.lightPrimary1,
+        ),
+        padding: EdgeInsets.only(left: 32, top: _closed ? 0 : 32),
+        iconSize: 26,
+      );
+
   void _toggle() {
     final state = _sideMenuKey.currentState;
 
@@ -49,8 +60,8 @@ class BethDrawerController extends GetxController {
 
   final List<Widget> _section1 = [
     GetX(
-      init: CurrentUserController(),
-      builder: (CurrentUserController _) => BethTile(
+      init: UserController(),
+      builder: (UserController _) => BethTile(
         leading: const UserAvatar(
           radius: 52,
         ),
@@ -62,7 +73,6 @@ class BethDrawerController extends GetxController {
               ? BethColors.secondary2
               : BethColors.lightPrimary1,
         ),
-        onTap: () => Get.to(() => const Profile()),
       ),
     ),
   ];
@@ -79,9 +89,7 @@ class BethDrawerController extends GetxController {
     BethDrawerTile(
       iconData: FontAwesomeIcons.compass,
       title: BethTranslations.discover.tr,
-      color: ActiveTagController.tag == Discover.tag
-          ? BethColors.secondary2
-          : null,
+      color: ActiveTagController.tag == Home.tag ? BethColors.secondary2 : null,
       onTap: () => Get.to(() => const Discover()),
     ),
   ];

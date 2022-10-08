@@ -59,7 +59,9 @@ class _BugReportState extends State<BugReport> {
                       /// image preview
                       const _ImagePreview()
                     ],
-                  )
+                  ),
+
+                  const SizedBox(height: 100),
                 ],
               ),
             ),

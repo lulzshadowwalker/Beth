@@ -14,8 +14,8 @@ class _AccountSettingsState extends State<_AccountSettings> {
   @override
   Widget build(BuildContext context) {
     return GetX(
-      init: CurrentUserController(),
-      builder: (CurrentUserController _) => _SettingsSection(
+      init: UserController(),
+      builder: (UserController _) => _SettingsSection(
         sectionHeader: BethTranslations.accountSettings.tr,
         options: [
           /// name
@@ -77,7 +77,7 @@ class _AccountSettingsState extends State<_AccountSettings> {
   void _onTapProfilePicture() {
     Get.bottomSheet(
       GetX(
-        builder: (CurrentUserController _) => ChooseAvatar(
+        builder: (UserController _) => ChooseAvatar(
           nameText: _.data.name ?? BethConst.nameFallBack,
           buttonText: BethTranslations.applyChanges.tr,
           onPressed: (file) async {
@@ -95,7 +95,7 @@ class _AccountSettingsState extends State<_AccountSettings> {
 
             await RemoteDbController().updateProfilePicture(downloadUrl!);
 
-            Get.to(() => const Settings());
+            Get.back();
           },
         ),
       ),

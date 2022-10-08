@@ -17,7 +17,7 @@ class _BethHomeState extends State<BethHome> {
   void initState() {
     super.initState();
     ActiveTagController.tag = BethHome.tag;
-    Get.put(BottomNavBarController(selectedIndex: 2));
+    Get.put(BottomNavBarController(selectedIndex: 1));
   }
 
   @override

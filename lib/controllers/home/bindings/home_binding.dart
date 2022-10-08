@@ -6,7 +6,7 @@ import '../../notifications/notifications_controller.dart';
 class HomeBinding extends Bindings {
   @override
   void dependencies() async {
-    Get.put(() => CurrentUserController(), permanent: true);
+    Get.put(() => UserController(), permanent: true);
 
     await NotificationsController().init();
   }

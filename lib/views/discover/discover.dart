@@ -19,6 +19,7 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return BethScaffold(
       backgroundColor: BethColors.secondary1,
+      lightAppBarLeading: true,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

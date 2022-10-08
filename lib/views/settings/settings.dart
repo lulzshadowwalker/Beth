@@ -25,7 +25,7 @@ class _SettingsState extends State<Settings> {
           child: BethConstrainedBox(
             child: Center(
               child: Column(children: [
-                const _UserTile(),
+                const UserTile(),
                 ..._sections,
               ]),
             ),

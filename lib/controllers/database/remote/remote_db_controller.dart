@@ -214,9 +214,7 @@ class RemoteDbController {
           .doc(_uid)
           .collection(_kPosts)
           .doc(postId)
-          .set({
-        _kPosts: FieldValue.arrayUnion([postInfo])
-      });
+          .set(postInfo);
       _log.v('✅ added post to the user\'s record');
 
       await _firestore.collection(_kPosts).doc(postId).set(postInfo);
@@ -236,6 +234,29 @@ class RemoteDbController {
   Stream<List<BethPost>>? get fetchPosts {
     try {
       return _firestore.collection(_kPosts).snapshots().map((querySnapshot) {
+        List<BethPost> postsList = [];
+        for (var e in querySnapshot.docs) {
+          postsList.add(BethPost.fromDocumentSnapshot(e));
+        }
+        return postsList;
+      });
+    } on SocketException {
+      BethUtils.handleSocketException(_log);
+      return null;
+    } catch (e) {
+      BethUtils.handleUnkownError(e, _log);
+      return null;
+    }
+  }
+
+  Stream<List<BethPost>>? get fetchUserPosts {
+    try {
+      return _firestore
+          .collection(_kUsers)
+          .doc(_uid)
+          .collection(_kPosts)
+          .snapshots()
+          .map((querySnapshot) {
         List<BethPost> postsList = [];
         for (var e in querySnapshot.docs) {
           postsList.add(BethPost.fromDocumentSnapshot(e));

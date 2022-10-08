@@ -9,6 +9,7 @@ class BethScaffold extends StatelessWidget {
     String? title,
     bool resizeToAvoidBottomInset = false,
     Color? backgroundColor,
+    bool lightAppBarLeading = false,
     Key? key,
   })  : _body = body,
         _bottomNavigationBar = bottomNavigationBar,
@@ -17,6 +18,7 @@ class BethScaffold extends StatelessWidget {
         _title = title,
         _resizeToAvoidBottomInset = resizeToAvoidBottomInset,
         _backgroundColor = backgroundColor,
+        _lightAppBarLeading = lightAppBarLeading,
         super(key: key);
 
   final Widget _body;
@@ -26,6 +28,7 @@ class BethScaffold extends StatelessWidget {
   final String? _title;
   final bool _resizeToAvoidBottomInset;
   final Color? _backgroundColor;
+  final bool _lightAppBarLeading;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +49,7 @@ class BethScaffold extends StatelessWidget {
             backgroundColor: _backgroundColor,
             appBar: _BethAppBar(
               actions: _actions,
-              leading: _.icon,
+              leading: _lightAppBarLeading ? _.lightIcon : _.icon,
               title: _title,
             ),
             body: Column(

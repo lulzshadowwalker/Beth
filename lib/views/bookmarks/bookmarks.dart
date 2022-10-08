@@ -1,7 +1,18 @@
 part of './components/bookmarks_components.dart';
 
-class Bookmarks extends StatelessWidget {
+class Bookmarks extends StatefulWidget {
   const Bookmarks({Key? key}) : super(key: key);
+
+  @override
+  State<Bookmarks> createState() => _BookmarksState();
+}
+
+class _BookmarksState extends State<Bookmarks> {
+  @override
+  void initState() {
+    super.initState();
+    ActiveTagController.tag = BethHome.tag;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +24,12 @@ class Bookmarks extends StatelessWidget {
           const SizedBox(height: 50),
           Expanded(
             child: GetX(
-              builder: (CurrentUserController _) => _.bookmarks.isNotEmpty
-                  ? Section(sectionContent: _.bookmarks)
-                  : const _EmptyState(),
+              builder: (UserController _) => _.bookmarks.isNotEmpty
+                  ? DiscoverSection(sectionContent: _.bookmarks)
+                  : EmptyState(
+                      body: Lottie.asset(BethAnimations.emptyBox),
+                      text: BethTranslations.haventAddedItems.tr,
+                    ),
             ),
           ),
         ],

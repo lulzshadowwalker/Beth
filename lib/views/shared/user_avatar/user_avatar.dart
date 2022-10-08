@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 
 import '../../../controllers/current_user/current_user_controller.dart';
 import '../../../helpers/beth_images.dart';
-import '../../profile/profile.dart';
 
 class UserAvatar extends StatelessWidget {
   const UserAvatar({double? radius, Key? key})
@@ -18,27 +17,24 @@ class UserAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetX(
-        init: CurrentUserController(),
-        builder: (CurrentUserController _) => Bounceable(
-              child: Container(
-                width: _radius ?? 40,
-                height: _radius ?? 40,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: BethColors.secondary1,
-                    width: 2,
-                  ),
-                  color: BethColors.lightPrimary1,
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: CachedNetworkImageProvider(
-                      _.data.profilePicture ?? BethImages.unknownProfilePicture,
-                    ),
+        init: UserController(),
+        builder: (UserController _) => Container(
+              width: _radius ?? 40,
+              height: _radius ?? 40,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: BethColors.secondary1,
+                  width: 2,
+                ),
+                color: BethColors.lightPrimary1,
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: CachedNetworkImageProvider(
+                    _.data.profilePicture ?? BethImages.unknownProfilePicture,
                   ),
                 ),
               ),
-              onTap: () => Get.to(() => const Profile()),
             ));
   }
 }

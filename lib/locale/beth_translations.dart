@@ -97,8 +97,10 @@ class BethTranslations extends Translations {
   static const String irbid = 'irbid';
   static const String beautyAndCulture = 'beautyAndCulture';
   static const String continueToBeth = 'continueToBeth';
-  static const String cDiscover = 'discoverMore';
-  static const String moreToDiscover = 'comeBack';
+  static const String cDiscover = 'cDiscover';
+  static const String moreToDiscover = 'moreToDiscover';
+  static const String cProfile = 'cProfile';
+  static const String addFirstPost = 'addFirstPost';
   /* -------------------------------------------------------------------------- */
 
   /* [FirebaseAuthException] codes -------------------------------------------- */
@@ -215,6 +217,8 @@ class BethTranslations extends Translations {
           cDiscover: 'Discover',
           moreToDiscover:
               'There is always more wonders yet to discover about Irbid',
+          cProfile: 'Profile',
+          addFirstPost: 'Start by adding your first post',
         },
         /* -------------------------------------------------------------------------- */
 
@@ -310,6 +314,8 @@ class BethTranslations extends Translations {
           cDiscover: arCDiscover,
           moreToDiscover: 'هنالك دائما المزيد من العجائب لاستكشافها عن إربد',
           cBookmarks: arCBookmarks,
+          cProfile: 'الصفحة الشخصية',
+          addFirstPost: 'ابدأ بإضافة منشورك الأول',
         },
         /* -------------------------------------------------------------------------- */
       };

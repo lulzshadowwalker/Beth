@@ -1,7 +1,12 @@
-part of './settings_components.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class _UserTile extends StatelessWidget {
-  const _UserTile({Key? key}) : super(key: key);
+import '../../../controllers/current_user/current_user_controller.dart';
+import '../../../helpers/beth_const.dart';
+import '../user_avatar/user_avatar.dart';
+
+class UserTile extends StatelessWidget {
+  const UserTile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -9,8 +14,8 @@ class _UserTile extends StatelessWidget {
       const UserAvatar(radius: 64),
       const SizedBox(width: 20),
       GetX(
-        init: CurrentUserController(),
-        builder: (CurrentUserController _) => Expanded(
+        init: UserController(),
+        builder: (UserController _) => Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

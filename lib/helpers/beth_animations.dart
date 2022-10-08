@@ -8,6 +8,7 @@ class BethAnimations {
   static const String historic = 'assets/animations/historic_anim.json';
   static const String community = 'assets/animations/community_anim.json';
   static const String background = 'assets/animations/background_anim.json';
+  static const String camera = 'assets/animations/camera_anim.json';
 
   static const Map<String, String> reactions = {
     'love': 'assets/animations/love_anim.json',

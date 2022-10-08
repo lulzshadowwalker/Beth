@@ -23,6 +23,7 @@ import '../../../controllers/auth/auth_controller.dart';
 import '../../../controllers/theme_mode/theme_mode_controller.dart';
 import '../../shared/beth_scaffold/components/beth_scaffold_components.dart';
 import '../../shared/name_field/name_field.dart';
+import '../../shared/user_tile/user_tile.dart';
 
 part '../settings.dart';
 part 'account_settings.dart';
@@ -30,4 +31,3 @@ part 'app_settings.dart';
 part 'developer_notice.dart';
 part 'options_tile.dart';
 part 'settings_section.dart';
-part 'user_tile.dart';

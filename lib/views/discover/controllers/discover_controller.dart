@@ -14,7 +14,11 @@ class DiscoverController extends GetxController {
     update();
   }
 
-  List<BethSection>? get sections => _sections;
+  List<BethSection>? get sections {
+    if (_sections!.isEmpty) return null;
+    
+    return _sections;
+  }
 
   int get length {
     final int secLength = _sections?.length ?? 1;
@@ -34,12 +38,7 @@ class DiscoverController extends GetxController {
           _BethTab(text: e.sectionName ?? 'discover'):
 
               /// tabview
-              Padding(
-            padding: const EdgeInsets.only(left: 45, right: 25),
-            child: Section(
-              sectionContent: e.entryContent ?? [],
-            ),
-          )
+              _TabViewSection(e: e)
         },
       );
     }

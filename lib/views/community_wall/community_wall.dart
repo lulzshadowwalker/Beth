@@ -2,7 +2,6 @@ part of './components/community_wall_components.dart';
 
 class CommunityWall extends StatefulWidget {
   const CommunityWall({Key? key}) : super(key: key);
-  static const String tag = 'CommunityWall';
 
   @override
   State<CommunityWall> createState() => _CommunityWallState();
@@ -12,7 +11,7 @@ class _CommunityWallState extends State<CommunityWall> {
   @override
   void initState() {
     super.initState();
-    ActiveTagController.tag = CommunityWall.tag;
+    ActiveTagController.tag = BethHome.tag;
   }
 
   @override
@@ -26,7 +25,7 @@ class _CommunityWallState extends State<CommunityWall> {
           children: [
             BethAnimatedHeader(text: BethTranslations.communityWall.tr),
             const SizedBox(height: 100),
-            const Expanded(child: _Feed())
+            const Expanded(child: Feed())
           ],
         ),
       ),

@@ -50,6 +50,8 @@ class _AddPostState extends State<AddPost> {
                 text: BethTranslations.postToCommunity.tr,
               ),
 
+              const SizedBox(height: 40),
+
               /// image
               GetBuilder(
                 builder: (ImageController _) => Expanded(
