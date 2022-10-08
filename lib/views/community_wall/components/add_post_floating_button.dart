@@ -8,7 +8,8 @@ class _AddPostFloatingButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 150),
+      padding:
+          EdgeInsets.symmetric(horizontal: 22.0, vertical: Get.height * 0.15),
       child: Bounceable(
         onTap: () {
           /// do nothing, merely cosmetic for visuals.

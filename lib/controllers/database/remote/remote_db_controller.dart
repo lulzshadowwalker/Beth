@@ -41,6 +41,7 @@ class RemoteDbController {
   static const String _kLikes = 'likes';
   static const String _kReactionType = 'reactionType';
   static const String _kLikedBy = 'likedBy';
+  static const String _kBookmarks = 'bookmarks';
   /* -------------------------------------------------------------------------- */
 
   static String? get _uid => Get.find<AuthController>().getUserId;
@@ -84,12 +85,30 @@ class RemoteDbController {
     }
   }
 
-  Stream<BethUser> getCurrentUserData() {
+  Stream<BethUser> currentUserData() {
     return _firestore
         .collection(_kUsers)
         .doc(_uid)
         .snapshots()
         .map(BethUser.fromDocumentSnapshot);
+  }
+
+  Stream<List<EntryContent>>? bookmarks() {
+    if (_uid == null) return null;
+
+    return _firestore
+        .collection(_kUsers)
+        .doc(_uid)
+        .collection(_kBookmarks)
+        .snapshots()
+        .map((querySnap) {
+      List<EntryContent> bookmarks = [];
+      for (var i in querySnap.docs) {
+        bookmarks.add(EntryContent.fromDocumentSnapshot(i));
+      }
+
+      return bookmarks;
+    });
   }
 
   Future<void> updateUserDisplayName(String name) async {
@@ -214,14 +233,23 @@ class RemoteDbController {
     }
   }
 
-  Stream<List<BethPost>> get fetchPosts =>
-      _firestore.collection(_kPosts).snapshots().map((querySnapshot) {
+  Stream<List<BethPost>>? get fetchPosts {
+    try {
+      return _firestore.collection(_kPosts).snapshots().map((querySnapshot) {
         List<BethPost> postsList = [];
         for (var e in querySnapshot.docs) {
           postsList.add(BethPost.fromDocumentSnapshot(e));
         }
         return postsList;
       });
+    } on SocketException {
+      BethUtils.handleSocketException(_log);
+      return null;
+    } catch (e) {
+      BethUtils.handleUnkownError(e, _log);
+      return null;
+    }
+  }
 
   Future<void> reactToPost({
     required BethPost data,
@@ -308,6 +336,40 @@ class RemoteDbController {
     } catch (e) {
       BethUtils.handleUnkownError(e, _log);
       return null;
+    }
+  }
+
+  Future<void> addBookmark(EntryContent entryContent) async {
+    try {
+      await _firestore
+          .collection(_kUsers)
+          .doc(_uid)
+          .collection(_kBookmarks)
+          .doc(entryContent.title)
+          .set(entryContent.toJson());
+
+      _log.v('✅ Bookmark added');
+    } on SocketException {
+      BethUtils.handleSocketException(_log);
+    } catch (e) {
+      BethUtils.handleUnkownError(e, _log);
+    }
+  }
+
+  Future<void> removeBookmark(EntryContent entryContent) async {
+    try {
+      await _firestore
+          .collection(_kUsers)
+          .doc(_uid)
+          .collection(_kBookmarks)
+          .doc(entryContent.title)
+          .delete();
+
+      _log.v('✅ Bookmark deleted');
+    } on SocketException {
+      BethUtils.handleSocketException(_log);
+    } catch (e) {
+      BethUtils.handleUnkownError(e, _log);
     }
   }
 }

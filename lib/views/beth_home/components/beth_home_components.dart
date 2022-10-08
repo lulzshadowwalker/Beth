@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 
 import '../../../controllers/bottom_nav_bar/bottomnavbar_controller.dart';
 import '../../add_post.dart/add_post.dart';
-import '../../bookmarks/bookmarks.dart';
 import '../../shared/beth_scaffold/components/beth_scaffold_components.dart';
 import '../../shared/bottom_nav_bar_constrained_box/bottom_nav_bar_constrained_box.dart';
 

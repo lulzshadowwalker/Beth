@@ -34,8 +34,11 @@ class DiscoverController extends GetxController {
           _BethTab(text: e.sectionName ?? 'discover'):
 
               /// tabview
-              _Section(
-            sectionContent: e.entryContent ?? [],
+              Padding(
+            padding: const EdgeInsets.only(left: 45, right: 25),
+            child: Section(
+              sectionContent: e.entryContent ?? [],
+            ),
           )
         },
       );

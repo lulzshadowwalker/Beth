@@ -62,4 +62,5 @@ class EntryContent {
   String toString() {
     return 'SectionContent(_title: $_title, _headerImages: $_headerImages, _previewImage: $_previewImage, _link: $_link, _geoLocation: $_geoLocation, _markdown: $_markdown)';
   }
+
 }

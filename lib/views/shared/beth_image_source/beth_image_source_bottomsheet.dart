@@ -17,7 +17,7 @@ class BethImageSourceBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(25, 0, 25, 75),
+      padding: const EdgeInsets.fromLTRB(25, 0, 25, 50),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,

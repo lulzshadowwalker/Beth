@@ -21,7 +21,36 @@ class _DetailedView extends StatelessWidget {
                   _entryContent.title ?? BethTranslations.discover.tr,
             )
           : null,
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          GetX(
+            builder: (CurrentUserController _) {
+              bool isBookmarked = _.bookmarks.firstWhereOrNull(
+                          (e) => e.title == _entryContent.title) !=
+                      null
+                  ? true
+                  : false;
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Bounceable(
+                    onTap: () async {
+                      isBookmarked
+                          ? await RemoteDbController()
+                              .removeBookmark(_entryContent)
+                          : await RemoteDbController()
+                              .addBookmark(_entryContent);
+                    },
+                    child: Icon(
+                      isBookmarked
+                          ? Icons.bookmark
+                          : Icons.bookmark_border_rounded,
+                      color: BethColors.accent2,
+                    )),
+              );
+            },
+          )
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [

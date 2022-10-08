@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:beth/controllers/auth/bindings/auth_binding.dart';
 import 'package:beth/controllers/credentials/credentials_controller.dart';
 import 'package:beth/controllers/database/remote/remote_db_controller.dart';
+import 'package:beth/controllers/home/bindings/home_binding.dart';
 import 'package:beth/helpers/beth_utils.dart';
 import 'package:beth/locale/beth_translations.dart';
 import 'package:beth/models/alert_type.dart';
@@ -50,10 +51,9 @@ class AuthController extends GetxController {
   _setScreen(User? currentUser) {
     currentUser == null
         ? Get.offAll(const SignIn(), binding: AuthBinding())
-        : {
-            Get.put(() => CurrentUserController(), permanent: true),
-            Get.offAll(const BethHome())
-          };
+        : 
+            Get.offAll(const BethHome(), binding: HomeBinding())
+          ;
   }
 
   /* GUEST -------------------------------------------------------------------- */

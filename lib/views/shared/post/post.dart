@@ -44,31 +44,32 @@ class Post extends StatelessWidget {
                       ),
                     ),
                   ),
-                  PositionedDirectional(
-                    end: 5,
-                    bottom: 5,
-                    child: Container(
-                      height: 30,
-                      width: 30,
-                      decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(.35),
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(.3),
-                            offset: const Offset(0, 3),
-                            blurRadius: 3,
-                          )
-                        ],
+
+                  /// reaction corner preview
+                  if (reactionPreview != null)
+                    PositionedDirectional(
+                      end: 5,
+                      bottom: 5,
+                      child: Container(
+                        height: 30,
+                        width: 30,
+                        decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(.35),
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(.3),
+                              offset: const Offset(0, 3),
+                              blurRadius: 3,
+                            )
+                          ],
+                        ),
+                        child: _reactionsController.reactions
+                            .firstWhere(
+                                (value) => value.value == reactionPreview)
+                            .previewIcon,
                       ),
-                      child: reactionPreview != null
-                          ? _reactionsController.reactions
-                              .firstWhere(
-                                  (value) => value.value == reactionPreview)
-                              .previewIcon
-                          : const SizedBox(),
-                    ),
-                  )
+                    )
                 ],
               )
             : Container(

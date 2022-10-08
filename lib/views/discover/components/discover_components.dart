@@ -1,3 +1,4 @@
+import 'package:beth/controllers/current_user/current_user_controller.dart';
 import 'package:beth/controllers/database/remote/remote_db_controller.dart';
 import 'package:beth/controllers/scale/scale_controller.dart';
 import 'package:beth/helpers/beth_images.dart';

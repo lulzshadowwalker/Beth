@@ -6,7 +6,6 @@ import 'package:beth/views/beth_home/components/beth_home_components.dart';
 import 'package:beth/views/shared/beth_animated_header/beth_animated_header.dart';
 import 'package:beth/views/shared/beth_constrained_box/beth_constrained_box.dart';
 import 'package:beth/views/shared/beth_elevated_button/beth_elevatedbutton.dart';
-import 'package:beth/views/shared/beth_text_form_field/beth_textformfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:get/get.dart';
@@ -28,7 +27,7 @@ class _AddPostState extends State<AddPost> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(),
       extendBody: true,
       bottomNavigationBar: BottomNavBarConstrainedBox(
@@ -54,29 +53,24 @@ class _AddPostState extends State<AddPost> {
               /// image
               GetBuilder(
                 builder: (ImageController _) => Expanded(
-                  flex: 2,
+                  flex: 0,
                   child: _.getImage == null
                       ? Bounceable(
                           onTap: _pickImage,
                           child: Lottie.asset(BethAnimations.uploadField),
                         )
-                      : Card(
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          elevation: 8,
-                          child: Image.memory(
-                            _.getImage!,
-                            filterQuality: FilterQuality.high,
-                            fit: BoxFit.cover,
+                      : InteractiveViewer(
+                          child: Card(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            elevation: 8,
+                            child: Image.memory(
+                              _.getImage!,
+                              filterQuality: FilterQuality.high,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                 ),
-              ),
-
-              /// description
-              BethTextFormField(
-                hintText: BethTranslations.tellUsMore.tr,
-                prefixIcon: const Icon(Icons.info),
-                controller: _moreInfoController,
               ),
 
               const Spacer(),
@@ -87,14 +81,7 @@ class _AddPostState extends State<AddPost> {
     );
   }
 
-  final _moreInfoController = TextEditingController();
   final _imageController = Get.put(ImageController());
-
-  @override
-  void dispose() {
-    super.dispose();
-    _moreInfoController.dispose();
-  }
 
   void _pickImage() async =>
       _imageController.setImage = await BethUtils.selectImage();
@@ -111,10 +98,8 @@ class _AddPostState extends State<AddPost> {
     final imageUrl =
         await RemoteStorageController().upload(file: image, childName: 'posts');
 
-    await RemoteDbController().addPost(
-        imageUrl: imageUrl!, description: _moreInfoController.text.trim());
+    await RemoteDbController().addPost(imageUrl: imageUrl!);
 
-    _moreInfoController.clear();
     _imageController.clear();
 
     Get.off(() => const BethHome());

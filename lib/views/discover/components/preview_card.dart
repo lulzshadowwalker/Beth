@@ -25,7 +25,7 @@ class _PreviewCard extends StatelessWidget {
           child: AspectRatio(
             aspectRatio: 1,
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(45, 0, 25, 30),
+              padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: Card(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 child: Stack(

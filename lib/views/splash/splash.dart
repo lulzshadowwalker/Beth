@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:beth/controllers/notifications/notifications_controller.dart';
 import 'package:beth/helpers/beth_const.dart';
 import 'package:beth/helpers/beth_images.dart';
 import 'package:beth/themes/beth_colors.dart';
@@ -22,7 +23,7 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
-    
+
     Timer(
       const Duration(milliseconds: 1500),
       () {

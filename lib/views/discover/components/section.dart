@@ -1,8 +1,8 @@
 part of './discover_components.dart';
 
-class _Section extends StatelessWidget {
-  const _Section({
-    required List<EntryContent>sectionContent,
+class Section extends StatelessWidget {
+  const Section({
+    required List<EntryContent> sectionContent,
     Key? key,
   })  : _sectionContent = sectionContent,
         super(key: key);

@@ -84,6 +84,7 @@ class BethTranslations extends Translations {
   static const String feed = 'feed';
   static const String haventAddedItems = 'haventAddedItems';
   static const String bookmarks = 'bookmarks';
+  static const String cBookmarks = 'Bookmarks';
   static const String unauthenticEmail = 'unauthenticEmail';
   static const String bethWonders = 'bethWonders';
   static const String showOnMap = 'showOnMap';
@@ -96,6 +97,8 @@ class BethTranslations extends Translations {
   static const String irbid = 'irbid';
   static const String beautyAndCulture = 'beautyAndCulture';
   static const String continueToBeth = 'continueToBeth';
+  static const String cDiscover = 'discoverMore';
+  static const String moreToDiscover = 'comeBack';
   /* -------------------------------------------------------------------------- */
 
   /* [FirebaseAuthException] codes -------------------------------------------- */
@@ -112,6 +115,8 @@ class BethTranslations extends Translations {
   //
   static const String enCheckInternet = 'Check internet connection';
   static const String arCheckInternet = 'تحقق من الاتصال بالانترنت';
+  static const String arCDiscover = 'استكشف';
+  static const String arCBookmarks = 'المحفوظات';
 
   /* -------------------------------------------------------------------------- */
 
@@ -194,6 +199,7 @@ class BethTranslations extends Translations {
           feed: 'Feed',
           haventAddedItems: 'Bookmark items to show up here',
           bookmarks: 'bookmarks',
+          cBookmarks: 'Bookmarks',
           unauthenticEmail: 'please use an active email',
           bethWonders: 'the wonders of Beth-arbel',
           showOnMap: 'show on map',
@@ -206,6 +212,9 @@ class BethTranslations extends Translations {
           beautyAndCulture: 'ancient beauty and a modern captial of culture.',
           accessBookmarksAnywhere: 'access your bookmarks from any device!',
           continueToBeth: 'continue to Beth',
+          cDiscover: 'Discover',
+          moreToDiscover:
+              'There is always more wonders yet to discover about Irbid',
         },
         /* -------------------------------------------------------------------------- */
 
@@ -248,7 +257,7 @@ class BethTranslations extends Translations {
           pickImage: 'اختيار صورة',
           step2of2: 'خطوة ٢ من ٢',
           home: 'الصفحة الرئيسة',
-          discover: 'استكشف',
+          discover: arCDiscover,
           communityWall: 'المجتمع',
           settings: 'الإعدادات',
           bugReport: 'تبليغ خلل',
@@ -285,7 +294,7 @@ class BethTranslations extends Translations {
           popular: 'الأكثر رواجًا',
           feed: 'المنشورات',
           haventAddedItems: 'احفظ عناصر لكي تظهر هنا',
-          bookmarks: 'المحفوظات',
+          bookmarks: arCBookmarks,
           unauthenticEmail: 'يرجى استخدام بريد الكتروني فعال',
           bethWonders: 'خبايا أرابيلا',
           showOnMap: 'أظهر على الخريطة',
@@ -298,6 +307,9 @@ class BethTranslations extends Translations {
           beautyAndCulture: 'عريقة الجمال وعاصمة الثقافة المعاصرة',
           accessBookmarksAnywhere: 'يمكنك الوصول إلى محفوظاتك عبر جميع الأجهزة',
           continueToBeth: 'الاستمرار',
+          cDiscover: arCDiscover,
+          moreToDiscover: 'هنالك دائما المزيد من العجائب لاستكشافها عن إربد',
+          cBookmarks: arCBookmarks,
         },
         /* -------------------------------------------------------------------------- */
       };
