@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_protected_member
+
 import 'package:beth/controllers/database/remote/remote_db_controller.dart';
 import 'package:beth/helpers/beth_utils.dart';
 import 'package:beth/models/beth_user.dart';

@@ -15,7 +15,13 @@ class BethMarkdownBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MarkdownBody(
-        onTapLink: (link, _, __) => _onTapLink(link), data: _data);
+        styleSheet: MarkdownStyleSheet(
+            h1: Theme.of(context)
+                .textTheme
+                .headline5
+                ?.copyWith(fontWeight: FontWeight.bold)),
+        onTapLink: (link, _, __) => _onTapLink(link),
+        data: _data);
   }
 
   void _onTapLink(String link) {

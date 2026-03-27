@@ -5,7 +5,6 @@ import 'package:beth/locale/beth_translations.dart';
 import 'package:beth/models/beth_post.dart';
 import 'package:beth/themes/beth_colors.dart';
 import 'package:beth/views/add_post.dart/add_post.dart';
-import 'package:beth/views/home/components/home_components.dart';
 import 'package:beth/views/shared/beth_animated_header/beth_animated_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';

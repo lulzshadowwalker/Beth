@@ -61,7 +61,7 @@ class _BugReportState extends State<BugReport> {
                     ],
                   ),
 
-                  const SizedBox(height: 100),
+                  SizedBox(height: Get.height * 0.2),
                 ],
               ),
             ),

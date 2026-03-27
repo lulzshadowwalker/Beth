@@ -9,7 +9,11 @@ class _DeveloperNotice extends StatelessWidget {
       sectionHeader: BethTranslations.developerNotice.tr,
       options: [
         /// attributions
-        _OptionTile(title: BethTranslations.attributions.tr, onTap: () {}),
+        _OptionTile(
+            title: BethTranslations.about.tr,
+            onTap: ()  {
+              Get.to(() => const About());
+            }),
 
         /// bug report
         _OptionTile(

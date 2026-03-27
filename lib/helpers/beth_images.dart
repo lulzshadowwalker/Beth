@@ -12,6 +12,8 @@ class BethImages {
 
   static const String logo = 'assets/images/logo.svg';
 
+  static const String sponsors = 'lib/local/assets/sponsors.png';
+
   static const String travel =
       'https://images.unsplash.com/photo-1615023691139-47180d57138f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3000&q=80';
 

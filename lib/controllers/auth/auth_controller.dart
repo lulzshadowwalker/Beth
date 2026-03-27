@@ -15,7 +15,6 @@ import 'package:logger/logger.dart';
 
 import '../../views/auth/sign_in/components/sign_in_components.dart';
 import '../../views/beth_home/components/beth_home_components.dart';
-import '../current_user/current_user_controller.dart';
 
 class AuthController extends GetxController {
   /// Authentication Controller

@@ -31,16 +31,19 @@ class _PreviewCard extends StatelessWidget {
                 child: Stack(
                   children: [
                     /// TODO add Hero
-                    Container(
-                      width: double.infinity,
-                      height: double.infinity,
-                      alignment: Alignment.bottomCenter,
-                      decoration: BoxDecoration(
-                        color: BethColors.lightPrimary1,
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: CachedNetworkImageProvider(
-                            _entryContent.previewImage ?? BethImages.travel,
+                    Hero(
+                      tag: _entryContent.title ?? const Uuid().v4(),
+                      child: Container(
+                        width: double.infinity,
+                        height: double.infinity,
+                        alignment: Alignment.bottomCenter,
+                        decoration: BoxDecoration(
+                          color: BethColors.lightPrimary1,
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: CachedNetworkImageProvider(
+                              _entryContent.previewImage ?? BethImages.travel,
+                            ),
                           ),
                         ),
                       ),

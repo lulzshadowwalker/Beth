@@ -84,5 +84,7 @@
 	</array>
 	<!-- End of map_launcher section -->
 
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
 </dict>
 </plist>

@@ -22,8 +22,7 @@ class LanguageOptionsController extends GetxController {
 
   static final _storage = GetStorage();
 
-  String _value = BethTranslations.currentLanguageCode ??
-      BethTranslations.englishLanguageKey;
+  String _value = BethTranslations.currentLanguageCode;
 
   get icon => const Padding(
         padding: EdgeInsets.symmetric(horizontal: 10),

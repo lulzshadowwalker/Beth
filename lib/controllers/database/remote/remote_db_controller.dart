@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:beth/controllers/credentials/credentials_controller.dart';
@@ -42,6 +43,7 @@ class RemoteDbController {
   static const String _kReactionType = 'reactionType';
   static const String _kLikedBy = 'likedBy';
   static const String _kBookmarks = 'bookmarks';
+  static const String _kAbout = 'about';
   /* -------------------------------------------------------------------------- */
 
   static String? get _uid => Get.find<AuthController>().getUserId;
@@ -318,7 +320,7 @@ class RemoteDbController {
     try {
       List<BethSection> sections = [];
 
-      final String? langCode = BethTranslations.currentLanguageCode;
+      final String langCode = BethTranslations.currentLanguageCode;
       final String collection = '${langCode}Discover';
 
       List<String> sectionIds = [];
@@ -391,6 +393,26 @@ class RemoteDbController {
       BethUtils.handleSocketException(_log);
     } catch (e) {
       BethUtils.handleUnkownError(e, _log);
+    }
+  }
+
+  Future<String?> fetchAbout() async {
+    try {
+      final String langCode = BethTranslations.currentLanguageCode;
+
+      final doc =
+          await _firestore.collection(_kAbout).doc('${langCode}About').get();
+
+      final String about = doc.data()?['body'];
+
+      _log.v('✅ fetched About');
+      return about;
+    } on SocketException {
+      BethUtils.handleSocketException(_log);
+      return null;
+    } catch (e) {
+      BethUtils.handleUnkownError(e, _log);
+      return null;
     }
   }
 }

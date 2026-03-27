@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:beth/controllers/notifications/notifications_controller.dart';
 import 'package:beth/helpers/beth_const.dart';
 import 'package:beth/helpers/beth_images.dart';
 import 'package:beth/themes/beth_colors.dart';
@@ -43,11 +42,25 @@ class _SplashState extends State<Splash> {
     return Scaffold(
       body: Container(
         color: BethColors.secondary1Dimmed,
-        child: Center(
-          child: SvgPicture.asset(
-            BethImages.logo,
-            color: BethColors.secondary2,
-          ),
+        child: Column(
+          children: [
+            const Spacer(),
+            SvgPicture.asset(
+              BethImages.logo,
+              color: BethColors.secondary2,
+            ),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 30),
+              child: Align(
+                alignment: Alignment.center,
+                child: Image.asset(
+                  BethImages.sponsors,
+                  width: Get.width * 0.3,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

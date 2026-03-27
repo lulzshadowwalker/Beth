@@ -14,13 +14,13 @@ import 'package:beth/views/shared/beth_dropdown_button/beth_dropdown_button.dart
 import 'package:beth/views/shared/beth_email_field/beth_email_field.dart';
 import 'package:beth/views/shared/single_field/components/single_field_components.dart';
 import 'package:beth/views/shared/upload_avatar/components/upload_avatar_components.dart';
-import 'package:beth/views/shared/user_avatar/user_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import '../../../controllers/active_tag/active_tag_controller.dart';
 import '../../../controllers/auth/auth_controller.dart';
 import '../../../controllers/theme_mode/theme_mode_controller.dart';
+import '../../about/about.dart';
 import '../../shared/beth_scaffold/components/beth_scaffold_components.dart';
 import '../../shared/name_field/name_field.dart';
 import '../../shared/user_tile/user_tile.dart';

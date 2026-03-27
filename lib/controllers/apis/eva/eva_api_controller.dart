@@ -14,7 +14,7 @@ class EvaApiController {
 
   /// verifies email authenticity
   /// ..
-  /// returns [true] if the email is found to be not spam and undisposable as
+  /// returns [true] if the email is found to be not spam and nondisposable as
   /// well as in-case of an api-side failure
   Future<bool> verifyEmail(String email) async {
     try {

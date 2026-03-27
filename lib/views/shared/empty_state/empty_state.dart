@@ -1,4 +1,5 @@
-
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:beth/themes/beth_colors.dart';
 import 'package:flutter/material.dart';
 
 class EmptyState extends StatelessWidget {
@@ -6,13 +7,12 @@ class EmptyState extends StatelessWidget {
     required Widget body,
     required String text,
     Key? key,
-  }) : 
-  _body = body,
-  _text = text,
-  super(key: key);
+  })  : _body = body,
+        _text = text,
+        super(key: key);
 
-final Widget _body;
-final String _text;
+  final Widget _body;
+  final String _text;
 
   @override
   Widget build(BuildContext context) {
@@ -21,17 +21,29 @@ final String _text;
       children: [
         _body,
         const SizedBox(height: 50),
-        Text(
-          _text,
-          style: Theme.of(context)
-              .textTheme
-              .headline6
-              ?.copyWith(fontWeight: FontWeight.w600),
-          textAlign: TextAlign.center,
+        AnimatedTextKit(
+          totalRepeatCount: 1,
+          animatedTexts: [
+            FlickerAnimatedText(
+              _text,
+              speed: const Duration(milliseconds: 3000),
+              textStyle: Theme.of(context).textTheme.headline6?.copyWith(
+                fontWeight: FontWeight.w600,
+                color: BethColors.white,
+                shadows: [
+                  Shadow(
+                    blurRadius: 7.0,
+                    color: BethColors.neutral1,
+                    offset: const Offset(0, 0),
+                  ),
+                ],
+              ),
+              textAlign: TextAlign.center,
+            )
+          ],
         ),
         const Spacer()
       ],
     );
   }
 }
-

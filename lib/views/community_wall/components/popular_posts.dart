@@ -1,5 +1,6 @@
 part of './community_wall_components.dart';
 
+// ignore: unused_element
 class _PopularPosts extends StatelessWidget {
   const _PopularPosts({Key? key}) : super(key: key);
 

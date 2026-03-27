@@ -40,15 +40,11 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                     ),
                     RotatedBox(
                       quarterTurns: -1,
-                      child: SingleChildScrollView(
-                        child: BethTabBar(
-                          tabController: controller,
-                          isScrollable: false,
-                          labelPadding:
-                              const EdgeInsets.fromLTRB(35, 30, 35, 10),
-                          padding: const EdgeInsets.only(bottom: 30),
-                          tabs: _.tabs?.keys.toList() ?? [Container()],
-                        ),
+                      child: BethTabBar(
+                        tabController: controller,
+                        labelPadding: const EdgeInsets.fromLTRB(35, 30, 35, 10),
+                        padding: const EdgeInsets.only(bottom: 30),
+                        tabs: _.tabs?.keys.toList() ?? [Container()],
                       ),
                     )
                   ],

@@ -20,16 +20,16 @@ class _LinkCard extends StatelessWidget {
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Container(
           width: double.infinity,
-          color: BethColors.secondary1,
+          color: BethColors.accent2,
           child: Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 18.0, vertical: 8.0),
             child: Row(
               children: [
-                FaIcon(
+                const FaIcon(
                   FontAwesomeIcons.link,
                   size: 14,
-                  color: Colors.grey.shade700,
+                  color: BethColors.black,
                 ),
                 const SizedBox(width: 5),
                 Text(
@@ -46,6 +46,9 @@ class _LinkCard extends StatelessWidget {
 
   void _launchUrl() {
     BethUtils.getLogger('LinkCard').v('📤 launching webview with url: $_link');
-    Get.to(BethWebView(link: _link));
+    Get.to(BethWebView(
+      link: _link,
+      title: _text,
+    ));
   }
 }

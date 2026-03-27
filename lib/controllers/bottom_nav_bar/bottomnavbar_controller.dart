@@ -1,10 +1,9 @@
-import 'package:beth/views/discover/components/discover_components.dart';
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../views/bookmarks/components/bookmarks_components.dart';
 import '../../views/community_wall/components/community_wall_components.dart';
-import '../../views/home/components/home_components.dart';
 import '../../views/profile/components/profile_components.dart';
 
 class BottomNavBarController extends GetxController {

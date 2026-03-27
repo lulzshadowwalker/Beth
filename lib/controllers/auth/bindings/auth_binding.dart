@@ -7,8 +7,8 @@ class AuthBinding extends Bindings {
   @override
   void dependencies() async {
     Get.put(AuthController(), permanent: true);
-    Get.put(CredentialsController());
+    Get.put(CredentialsController(), permanent: true);
 
     await NotificationsController().init();
-  } 
+  }
 }

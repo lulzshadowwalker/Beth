@@ -9,7 +9,8 @@ class BethTranslations extends Translations {
       };
 
   /// returns the language code of the current locale
-  static String? get currentLanguageCode => Get.locale?.languageCode;
+  static String get currentLanguageCode =>
+      Get.locale?.languageCode ?? englishLanguageKey;
 
   static const String english = 'English';
   static const String englishLanguageKey = 'en';
@@ -101,6 +102,7 @@ class BethTranslations extends Translations {
   static const String moreToDiscover = 'moreToDiscover';
   static const String cProfile = 'cProfile';
   static const String addFirstPost = 'addFirstPost';
+  static const String about = 'about';
   /* -------------------------------------------------------------------------- */
 
   /* [FirebaseAuthException] codes -------------------------------------------- */
@@ -219,6 +221,7 @@ class BethTranslations extends Translations {
               'There is always more wonders yet to discover about Irbid',
           cProfile: 'Profile',
           addFirstPost: 'Start by adding your first post',
+          about: 'about',
         },
         /* -------------------------------------------------------------------------- */
 
@@ -316,6 +319,7 @@ class BethTranslations extends Translations {
           cBookmarks: arCBookmarks,
           cProfile: 'الصفحة الشخصية',
           addFirstPost: 'ابدأ بإضافة منشورك الأول',
+          about: 'حول',
         },
         /* -------------------------------------------------------------------------- */
       };

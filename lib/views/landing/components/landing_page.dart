@@ -42,20 +42,21 @@ class _LandingPage extends StatelessWidget {
           ),
           _child,
           const Spacer(),
-          if (_isLast)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 50),
-              child: BethElevatedButton(
-                onTap: () {
-                  GetStorage().write(BethConst.isFirstLaunch, false);
-                  Get.put(AuthController(), permanent: true);
-                },
-                color: BethColors.accent1,
-                text: BethTranslations.continueToBeth.tr,
-                foregroundColor: BethColors.lightPrimary1,
-                borderless: false,
-              ),
-            ),
+          _isLast
+              ? Padding(
+                  padding: const EdgeInsets.only(bottom: 50),
+                  child: BethElevatedButton(
+                    onTap: () {
+                      GetStorage().write(BethConst.isFirstLaunch, false);
+                      Get.put(AuthController(), permanent: true);
+                    },
+                    color: BethColors.accent1,
+                    text: BethTranslations.continueToBeth.tr,
+                    foregroundColor: BethColors.lightPrimary1,
+                    borderless: false,
+                  ),
+                )
+              : _Sponsors(),
         ],
       ),
     );

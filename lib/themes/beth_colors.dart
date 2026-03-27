@@ -29,7 +29,7 @@ class BethColors {
   static Color get primary => BethTheme.isLight ? lightPrimary1 : darkPrimary1;
   static Color get secondary => BethTheme.isLight ? secondary1 : secondary2;
 
-  static final Color lightPrimary1 = colorFromHex('F9F9FB');
+  static final Color lightPrimary1 = colorFromHex('EEF1F3');
   static final Color darkPrimary1 = colorFromHex('1C1B22');
   static final Color secondary1 = colorFromHex('285656');
   static final Color secondary1Dimmed = colorFromHex('1F4948');
